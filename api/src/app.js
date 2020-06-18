@@ -5,12 +5,15 @@ import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
+import databaseFactory from './config/database.config';
+
 import routes from './app.routes';
 
 /**
  * Configuration of service
  */
 const app = express();
+databaseFactory();
 app.use(helmet());
 app.use(bodyParser.json({ limit: '20mb', extended: true }));
 app.use(cors({
