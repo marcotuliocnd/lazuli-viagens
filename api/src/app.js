@@ -24,7 +24,7 @@ app.use(cors({
 /**
  * Routes
  */
-app.use(routes);
+app.use('/', routes);
 
 /**
  * Initializing server

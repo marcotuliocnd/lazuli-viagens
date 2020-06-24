@@ -1,9 +1,13 @@
-import express from 'express';
-import AppController from './app.controller';
+import { Router } from 'express';
 
-const route = express.Router();
-const appController = new AppController();
+import roleRoutes from './routes/role.routes';
+import appRoutes from './routes/app.routes';
+import authRoutes from './routes/auth.routes';
 
-route.get('/', appController.status);
+const routes = Router();
 
-export default route;
+routes.use('/', appRoutes);
+routes.use('/roles', roleRoutes);
+routes.use('/auth', authRoutes);
+
+export default routes;
