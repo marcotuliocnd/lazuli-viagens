@@ -20,4 +20,8 @@ routes.post('/login', [
   check('password').isLength({ min: 8 }),
 ], AuthController.login);
 
+routes.post('/recover', [
+  check('email').isEmail(),
+], AuthController.recover);
+
 export default routes;
