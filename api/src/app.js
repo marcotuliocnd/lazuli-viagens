@@ -27,7 +27,6 @@ app.use(cors({
  */
 app.use('/', routes);
 app.use('/public', express.static(path.join(__dirname, '..', 'public')));
-console.log(path.join(__dirname, 'public'));
 
 /**
  * Initializing server

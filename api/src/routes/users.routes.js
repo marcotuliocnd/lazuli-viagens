@@ -30,6 +30,7 @@ const upload = multer({
 });
 
 route.patch('/me/avatar', [upload.single('avatar'), AuthMiddleware], UserController.updateAvatar);
-route.patch('/me', AuthMiddleware, UserController.updatePassword);
+route.patch('/me/password', AuthMiddleware, UserController.updatePassword);
+route.patch('/me', AuthMiddleware, UserController.updateUser);
 
 export default route;

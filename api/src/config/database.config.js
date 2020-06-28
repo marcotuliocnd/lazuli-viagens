@@ -8,6 +8,7 @@ export default async function databaseFactory() {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
+        useFindAndModify: true,
       },
     );
     console.log('> MongoDB connected');
