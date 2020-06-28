@@ -2,6 +2,7 @@ import { Router } from 'express';
 import multer from 'multer';
 
 import AuthMiddleware from '../middlewares/auth.middleware';
+import AdminMiddleware from '../middlewares/admin.middleware';
 import UserController from '../controllers/users.controller';
 
 const route = Router();
@@ -32,5 +33,7 @@ const upload = multer({
 route.patch('/me/avatar', [upload.single('avatar'), AuthMiddleware], UserController.updateAvatar);
 route.patch('/me/password', AuthMiddleware, UserController.updatePassword);
 route.patch('/me', AuthMiddleware, UserController.updateUser);
+
+route.delete('/:id', AdminMiddleware, UserController.deleteUser);
 
 export default route;

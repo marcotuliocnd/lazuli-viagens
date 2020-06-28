@@ -152,4 +152,18 @@ export default {
         .json({ success: false, message: 'Internal Server Error' });
     }
   },
+
+  async deleteUser(req, res) {
+    try {
+      const data = await User.deleteOne({ _id: req.params.id });
+      return res
+        .status(200)
+        .json({ success: true, data });
+    } catch (err) {
+      console.error(err.message);
+      return res
+        .status(500)
+        .json({ success: false, message: 'Internal Server Error' });
+    }
+  },
 };
