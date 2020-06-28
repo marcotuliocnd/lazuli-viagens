@@ -12,7 +12,6 @@ export default function AdminMiddleware(req, res, next) {
   try {
     const decoded = jwt.verify(token.slice(7, token.length), process.env.APP_SECRET);
 
-    console.log(decoded);
     if (decoded.role !== 'admin') {
       return res
         .status(401)
