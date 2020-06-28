@@ -57,6 +57,7 @@ const User = new Schema(
   {
     timestamps: true,
     selectPopulatedPaths: true,
+    toJSON: { virtuals: true },
   },
 );
 
@@ -64,6 +65,8 @@ User.plugin(mongooseDelete, { deletedAt: true });
 
 User
   .virtual('avatar_url')
-  .get(() => (this.avatar ? `${process.env.BASE_URL}/public/avatar/${this.avatar}` : null));
+  .get(function () {
+    return (this.avatar ? `${process.env.BASE_URL}/public/avatar/${this.avatar}` : null);
+  });
 
 export default model('users', User);
