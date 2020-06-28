@@ -4,6 +4,7 @@ import fs from 'fs';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import path from 'path';
 
 import databaseFactory from './config/database.config';
 
@@ -25,6 +26,8 @@ app.use(cors({
  * Routes
  */
 app.use('/', routes);
+app.use('/public', express.static(path.join(__dirname, '..', 'public')));
+console.log(path.join(__dirname, 'public'));
 
 /**
  * Initializing server
