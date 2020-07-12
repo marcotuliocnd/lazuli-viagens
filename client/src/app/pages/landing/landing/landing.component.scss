@@ -1,0 +1,188 @@
+nav {
+  padding: 0 50px;
+  border-top: 3px solid #0055b0;
+
+  .navbar-brand {
+    .lazuli-brand {
+      width: 100%;
+      max-width: 125px;
+    }
+  }
+
+
+  .nav-link {
+    color: #003870;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+}
+
+#slides {
+  height: auto;
+  #slideCarousel {
+    .carousel-inner {
+      .carousel-item {
+        height: 100%;
+        max-height: 900px;
+      }
+    }
+  }
+}
+
+#features {
+  background-color: white;
+  z-index: 1;
+  position: relative;
+  text-align: center;
+  padding: 7% 15%;
+
+  .feature-box {
+    padding: 4.5%;
+
+    .icone {
+      color: #0055b0;
+      margin-bottom: 1rem;
+
+      &:hover {
+        cursor: pointer;
+        transition: .2s;
+        color: #123961;
+      }
+    }
+  }
+}
+
+#testimonials {
+  padding: 7% 15%;
+  text-align: center;
+  background-color: #0055b0;
+  color: #fff;
+
+  #testimonials-carousel {
+    height: 400px;
+
+    .carousel-item {
+      padding: 0 15%;
+      color: #fff;
+
+      .testiomonails-img {
+        width: 100px;
+        height: 100px;
+        border-radius: 250px;
+        margin-right: 1rem;
+        margin-top: 1rem;
+      }
+    }
+  }
+
+}
+
+#press {
+  background-color: #0055b0;
+  text-align: center;
+  padding-bottom: 3%;
+
+  .press-logo {
+    margin: 20px 20px 50px;
+    color: #fff;
+
+    &:hover {
+      cursor: pointer;
+      transition: .2s;
+      color: #eee;
+    }
+  }
+}
+
+#pricing {
+  padding: 100px;
+  text-align: center;
+
+  .pricing-cl {
+    padding: 3% 2%;
+
+    .card {
+      height: 100%;
+    }
+  }
+}
+
+@media (max-width: 1028px){
+  #testimonials-carousel {
+    height: 800px !important;
+  }
+}
+
+
+#cta {
+  background-image: url('../../../../assets/images/city.jpg');
+  background-color: #042D58;
+  text-align: center;
+  padding: 7% 15%;
+  color: #fff;
+
+  .form-date {
+    display: flex !important;
+    flex-direction: column !important;
+    align-self: center !important;
+    justify-content: center !important;
+  }
+
+  h3 {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    line-height: 1.5;
+  }
+
+  .botao {
+    color: black;
+    margin: 7% 0 0 0;
+  }
+
+  .botao a {
+    color: black;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+}
+
+#footer {
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 7% 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .footer-header {
+    a {
+      color: #000;
+
+      &:hover {
+        color: #0055b0;
+      }
+    }
+  }
+
+  .footer-footer {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+
+    a {
+      font-weight: 700;
+      color: #000;
+    }
+  }
+
+  i {
+    padding: 0 15px 30px;
+  }
+}
