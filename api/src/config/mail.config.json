@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "lazuli-viagens",
+  "private_key_id": "50ac95c16f545d58dd056f72184a62240b256cb3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC5G726GZSKUymP\nP+DU5pRtY/npGth8Au9l42NIn/NOtAaBmwTodCfYfYfbfGklqKy5a1vs8KkyDeIO\n6M6rRuoUPav/AazM0CZKQN66VhI0VYH3vCdL770EkD09HhN0+aqxFcgDi5ggFpLG\ndX8aOwb1GrQHEJDLzsSty8AzrUPYuD/4UNVaI7A8BbZDDIJATJdMHUA3a0c1/YcR\nJNWAG8nNdo0Q8pqoPgQ6wznZ3WCIMuErNVyVVk8fAxgF4Kht+BKKhAqsVbHOEj8L\nUfLj/dD/G3zRYsbKIPURXH8Q4Cjcl1NU6e3YzCUPKi5XkMHZO/TBvgSym9/e14NG\nKr4gyK7hAgMBAAECggEALJa4mHvx8nH+2FFITLBwP3tuJw7+57xjQ1VHRKa22pX1\n3UFkqMPWF0mBsMaio14ioRVx0rzT3MlIU1QT+GEAILkMVcRnBfz7xDYlEJiMEQwp\n3u11P87zZoaCIdc9U5eSXM7E28nD7rLRTzndUIm4btEsXWlJn7ZiXQTv+uK5LZon\nACWPj9GdWVFOgRaKNhOJa2ni5c/QXnA3oEdUJpBDeG/PfJyAitUdY+aQGmCbMdgI\n6YhC9Ame8HnWZADowha+DfX0Fe5AQYdumbaoVTKo8OMFomJDY7UPSzsrROFvfl0l\nnKwUtfIc0IipGRwJix6ceH8rI4x/n7cfeZV8DOvWKwKBgQDvg7yMHP7xXWeGGqty\n4YHhJI0hhjK+6DXXlxBqSH9M6WCP+9WxwGTN5fpy8ZHG2rn3Bufcd0Dli/NE/gjN\nQqYYqBUuR6WZcVNE3bHZNmiIPXwLgHPiTTtMT/tqVi6FEjjd3kXcNqFSnpKEhzfY\n+cD/4Kf3B6LI2EwQFPAPbS1TxwKBgQDF2Vzz0Bf0zF0lprZSKef7cJrPPranB6Bk\nYPxSiaKZ02tDgvJbAcBp7GJKExpqMmTytgleFzb9IkfMIAJEDo1mE7LEKvwIkjNF\nXwpn9PfBhvHF3J9vl6/5jpLp90JAYRLd1cVtiha72yq8WEVXlGduOYcvUDc8h9V/\nv6BAaEiYFwKBgGwESWAXI5LOwQVlubSRpvVWep+H2hLmvoGAC1MjZuXUykulE3aa\ngdupwA1ejJPVyNBzONXgok/jkc6nkmifijDMfODmRvSwexEvuilvtCzdLbgyMhD5\nK6j62TPXshspYKQOvgrWSGLuSL2kDbe4yyWat6VcuDlD8um9x5Xtcue5AoGAV6dM\nOiyIYIkl/2dTwSUVxN0HiSfErk1/rtkVENAvfK0hCYD7NHybLZJvnVfHTSNUe/9Q\nOSJZ114XpwTLXDGCTaYOfkB49qcnFeXca2ApX9EUTk/HRx5R9WNIDWXhMTqQrD1o\nQXZ7SfD4hwcoeXujMz9DeB+2yRd47CcOrVpGRzMCgYBoI8PhJycscr7YEL8UUace\nEJdglKnwTNzoVTaKS97OPCUTU1s5ecBvtIcdZ1m0H6Vl1jgASAVSXz75/2g1hzwK\nI7/+XXcxxqZ9OCjW8TYfgvbQIhi4hD6ShCZkER4p6/iJUGrhRBocJ2EhxXq1oKYW\n1rwaIO9yYX6jJe/1bk1K5w==\n-----END PRIVATE KEY-----\n",
+  "client_email": "lazuli@lazuli-viagens.iam.gserviceaccount.com",
+  "client_id": "102766334469639403597",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/lazuli%40lazuli-viagens.iam.gserviceaccount.com"
+}
