@@ -1,3 +1,5 @@
+import { AuthGuard } from './services/auth.guard';
+import { GuestGuard } from './services/guest.guard';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,7 +24,9 @@ import { ReactiveFormsModule  } from '@angular/forms';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-    }
+    },
+    GuestGuard,
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })
