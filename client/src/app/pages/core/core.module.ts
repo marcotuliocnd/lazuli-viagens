@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { CoreRoutingModule } from './core-routing.module';
 import { TripsComponent } from './trips/trips.component';
+import { NavComponent } from './components/nav/nav.component';
 
 
 @NgModule({
-  declarations: [TripsComponent],
+  declarations: [TripsComponent, NavComponent],
   imports: [
     CommonModule,
-    CoreRoutingModule
+    CoreRoutingModule,
   ]
 })
 export class CoreModule { }

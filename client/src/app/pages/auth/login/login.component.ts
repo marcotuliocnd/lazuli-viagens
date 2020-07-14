@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
         this.loading = false;
         this.auth.setToken(res.token);
         this.auth.setUser(res.user);
+        this.router.navigate(['panel']);
       },
       (err) => {
         this.auth.logout();

@@ -1,0 +1,42 @@
+<div id="sidebar">
+  <div class="header">
+    <img src="../../../../../assets/images/avatar.png" alt="Avatar">
+
+    <div class="user--Info">
+      <h1>{{ user.name }}</h1>
+      <p>Premium</p>
+    </div>
+  </div>
+
+  <div class="status">
+    <p>Status</p>
+    <h1>Atrasado</h1>
+  </div>
+
+  <div class="menu">
+    <button class="menu-item" [ngClass]="{ 'active': active === 'trips' }">
+      <i class="fas fa-plane fa-2x icon"></i>
+      <span>
+        Viagens
+      </span>
+    </button>
+    <button class="menu-item" [ngClass]="{ 'active': active === 'fidelity' }">
+      <i class="fas fa-heart fa-2x icon"></i>
+      <span>
+        Fidelidade
+      </span>
+    </button>
+    <button *ngIf="user.role === 'admin'" class="menu-item" [ngClass]="{ 'active': active === 'users' }">
+      <i class="fas fa-user fa-2x icon"></i>
+      <span>
+        Usuários
+      </span>
+    </button>
+    <button (click)="logout()" class="menu-item" [ngClass]="{ 'active': active === 'logout' }">
+      <i class="fas fa-sign-out-alt fa-2x icon"></i>
+      <span>
+        Sair
+      </span>
+    </button>
+  </div>
+</div>
