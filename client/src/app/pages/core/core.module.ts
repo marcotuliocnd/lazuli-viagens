@@ -6,9 +6,10 @@ import { NgbModule, NgbDatepickerModule, NgbDateAdapter, NgbDateNativeAdapter } 
 import { CoreRoutingModule } from './core-routing.module';
 import { TripsComponent } from './trips/trips.component';
 import { NavComponent } from './components/nav/nav.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
-  declarations: [TripsComponent, NavComponent],
+  declarations: [TripsComponent, NavComponent, UsersComponent],
   imports: [
     CommonModule,
     CoreRoutingModule,

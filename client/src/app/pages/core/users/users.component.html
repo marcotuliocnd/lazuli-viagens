@@ -1,0 +1,118 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ edit ? 'Editar' : 'Novo' }} usuário</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="container" [formGroup]="formGroup">
+      <div class="placeholder">
+        <p *ngIf="message">{{ message }}</p>
+      </div>
+      <div class="row">
+        <div class="form-group col-lg-6">
+          <label for="name">Nome*:</label>
+          <div class="input-group">
+            <input formControlName="name" id="name" class="form-control" placeholder="Ex.: São Paulo"  />
+          </div>
+        </div>
+        <div class="form-group col-lg-6">
+          <label for="email">E-mail*:</label>
+          <div class="input-group">
+            <input formControlName="email" id="email" class="form-control" placeholder="Ex.: São Paulo"  />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-6">
+          <label for="cpf">CPF*:</label>
+          <div class="input-group">
+            <input formControlName="cpf" class="form-control" id="cpf" placeholder="000.000.000" type="text" />
+          </div>
+        </div>
+        <div class="form-group col-lg-6">
+          <label for="rg">RG*:</label>
+          <div class="input-group">
+            <input formControlName="rg" class="form-control" id="rg" placeholder="AA-00.000.000" type="text" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+          <label for="cellphone">Celular*:</label>
+          <div class="input-group">
+            <input formControlName="cellphone" class="form-control" id="cellphone" placeholder="+55 00 00000-0000" type="text" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+          <label for="phone">Telefone fixo:</label>
+          <div class="input-group">
+            <input formControlName="phone" id="phone" class="form-control" placeholder="+55 00 0000-0000"  />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+          <label for="birthdate_at">Data de nascimento*:</label>
+          <div class="input-group">
+            <input formControlName="birthdate_at" class="form-control" id="birthdate_at" placeholder="dd/mm/yyyy" type="text" ngbDatepicker #birthdateAt="ngbDatepicker"/>
+            <div class="calendar-button" (click)="birthdateAt.toggle()"><i class="fas fa-calendar-alt"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+          <label for="passport_number">Número de Passaporte:</label>
+          <div class="input-group">
+            <input formControlName="passport_number" id="passport_number" class="form-control" placeholder="00000000000000"  />
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="modal-footer">
+      <button (click)="save(edit ? 'save' : 'create')" type="submit" class="btn btn-outline-dark">{{ loading ? 'Enviando...' : edit ? 'Salvar' : 'Criar' }}</button>
+    </div>
+  </div>
+</ng-template>
+
+<div id="users">
+  <app-nav active="users"></app-nav>
+
+  <div id="content">
+    <div class="header">
+      <div class="header-left">
+        <h1>Usuários</h1>
+        <p>Todos os usuários</p>
+      </div>
+
+      <button (click)="openModal(content, 'create')" class="header-right" *ngIf="user.role.slug === 'admin'">
+        <i class="fas fa-plus"></i>
+        <span>Novo usuário</span>
+      </button>
+    </div>
+
+    <div class="list">
+      <div *ngFor="let userEach of users" (click)="openModal(content, 'edit', userEach)" class="list-item">
+        <div class="list-left">
+          <img src="../../../../assets/images/avatar.png" alt="Avatar">
+        </div>
+
+        <div class="list-right">
+          <h3>{{ userEach.name }}</h3>
+          <h3>{{ userEach.fidelity ? userEach.fidelity : 'Nenhum' }}</h3>
+        </div>
+      </div>
+
+      <a *ngIf="!disablePaginate" class="paginate-text" (click)="paginate()">{{ paginating ? '...' : 'Carregar mais...' }}</a>
+    </div>
+  </div>
+</div>

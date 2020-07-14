@@ -15,7 +15,7 @@ export class NavComponent implements OnInit {
 
   user: IUser;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, public router: Router) {
     this.user = this.authService.getUser();
   }
 

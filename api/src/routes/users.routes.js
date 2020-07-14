@@ -35,5 +35,8 @@ route.patch('/me/password', AuthMiddleware, UserController.updatePassword);
 route.patch('/me', AuthMiddleware, UserController.updateUser);
 
 route.delete('/:id', AdminMiddleware, UserController.deleteUser);
+route.get('/', AdminMiddleware, UserController.list);
+route.post('/', AdminMiddleware, UserController.store);
+route.patch('/:id', AdminMiddleware, UserController.update);
 
 export default route;

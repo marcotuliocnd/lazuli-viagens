@@ -1,6 +1,10 @@
 import bcrypt from 'bcryptjs';
 import { validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
+import nodemailer from 'nodemailer';
+
+import mailConfig from '../config/mail.config.json';
+import emailTemplate from '../config/email.templates';
 
 import User from '../models/User';
 import Role from '../models/Role';
@@ -10,6 +14,14 @@ function generateToken(payload = {}) {
     payload,
     process.env.APP_SECRET,
   );
+}
+
+function generatePassword(size) {
+  let password = '';
+  for (let i = 0; i < size; i += 1) {
+    password += Math.floor(Math.random() * 16).toString(16);
+  }
+  return password;
 }
 
 export default {
@@ -159,6 +171,109 @@ export default {
       return res
         .status(200)
         .json({ success: true, data });
+    } catch (err) {
+      console.error(err.message);
+      return res
+        .status(500)
+        .json({ success: false, message: 'Internal Server Error' });
+    }
+  },
+
+  async list(req, res) {
+    try {
+      const { page = 1, limit = 10 } = req.query;
+
+      const users = await User
+        .find()
+        .select('-password')
+        .limit(limit * 1)
+        .skip((page - 1) * limit)
+        .populate('role')
+        .sort({ createdAt: -1 })
+        .exec();
+
+      return res
+        .status(200)
+        .json({ success: true, data: users });
+    } catch (err) {
+      console.error(err.message);
+      return res
+        .status(500)
+        .json({ success: false, message: 'Internal Server Error' });
+    }
+  },
+
+  async store(req, res) {
+    try {
+      let user = await User.findOne({ email: req.body.email });
+      if (user) {
+        return res
+          .status(400)
+          .json({
+            success: false,
+            errors: [
+              {
+                field: 'email',
+                rule: 'exists',
+                message: 'Email já está sendo utilizado por outro usuário',
+              },
+            ],
+          });
+      }
+
+      const role = await Role.findOne({ slug: req.body.role || 'user' }).lean();
+      const randomPassword = generatePassword(10);
+      const passSalt = await bcrypt.genSalt();
+      const password = await bcrypt.hash(randomPassword, passSalt);
+
+      const transport = nodemailer.createTransport(
+        {
+          host: 'smtp.gmail.com',
+          port: 465,
+          secure: true,
+          auth: {
+            type: 'OAuth2',
+            user: 'naoresponder@artmakerdesign.com.br',
+            serviceClient: mailConfig.client_id,
+            privateKey: mailConfig.private_key,
+          },
+        },
+      );
+
+      const mailOptions = {
+        from: 'Lazuli Viagens <naoresponder@artmakerdesign.com.br',
+        to: req.body.email,
+        subject: 'Lazuli Viagens - Conta criada',
+        html: emailTemplate.create(req.body.name, randomPassword),
+      };
+
+      await transport.sendMail(mailOptions);
+      user = new User({ ...req.body, role: role._id, password });
+
+      await user.save();
+
+      return res
+        .status(200)
+        .json({ success: true, data: user });
+    } catch (err) {
+      console.error(err.message);
+      return res
+        .status(500)
+        .json({ success: false, message: 'Internal Server Error' });
+    }
+  },
+
+  async update(req, res) {
+    try {
+      const user = await User.updateOne(
+        { _id: req.params.id },
+        req.body,
+        { new: true },
+      );
+
+      return res
+        .status(200)
+        .json({ success: true, data: user });
     } catch (err) {
       console.error(err.message);
       return res
