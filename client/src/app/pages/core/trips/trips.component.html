@@ -8,32 +8,32 @@
     </div>
 
     <div class="list">
-      <div class="list-item">
+      <div *ngFor="let trip of trips" class="list-item">
         <div class="list-left">
           <div class="list--Wrapper">
             <i class="fas fa-map-marker-alt"></i>
-            <span>De: Uberlândia</span>
+            <span>De: {{ trip.from }}</span>
           </div>
           <div class="list--Wrapper">
             <i class="fas fa-map-marker-alt"></i>
-            <span>Para: Uberlândia</span>
+            <span>Para: {{ trip.to }}</span>
           </div>
           <div class="item--Wrapper">
             <div class="list--Wrapper">
               <i class="fas fa-arrow-right"></i>
-              {{ getDate()}}
+              {{ getDate(trip.started_at)}}
             </div>
             <div class="list--Wrapper">
               <i class="fas fa-arrow-left"></i>
-              {{ getDate()}}
+              {{ getDate(trip.finished_at)}}
             </div>
           </div>
         </div>
 
         <div class="list-right">
-          <h3>Cartão</h3>
-          <h3>R$ 314,00</h3>
-          <h3>{{ getDate() }}</h3>
+          <h3>{{ trip.payment_method }}</h3>
+          <h3>R$ {{ trip.value }}</h3>
+          <h3>{{ getDate(trip.payment_at) }}</h3>
         </div>
       </div>
     </div>

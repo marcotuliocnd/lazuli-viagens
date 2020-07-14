@@ -1,3 +1,4 @@
+import { TripService, Data } from './../services/trips.service';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
@@ -8,13 +9,20 @@ import * as moment from 'moment';
 })
 export class TripsComponent implements OnInit {
 
-  constructor() { }
+  trips: Data[] = [];
+
+  constructor(private tripService: TripService) { }
 
   ngOnInit(): void {
+    this.tripService.list().subscribe(
+      (res) => {
+        this.trips = res.data;
+      },
+    );
   }
 
-  getDate(): string {
-    return moment().format('DD/MM/YYYY');
+  getDate(datetime: string): string {
+    return moment(datetime).format('DD/MM/YYYY');
   }
 
 }
