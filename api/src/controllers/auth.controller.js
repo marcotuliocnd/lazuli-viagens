@@ -58,6 +58,8 @@ export default {
 
       const role = await Role.findOne({ slug: 'user' }).lean();
 
+      user._doc.role = role;
+
       user = new User({
         ...req.body,
         password: passCrypted,
@@ -106,6 +108,7 @@ export default {
       }
 
       const user = await User.findOne({ email: req.body.email });
+
       if (!user) {
         return res
           .status(400)
@@ -138,6 +141,8 @@ export default {
       }
 
       const role = await Role.findOne({ _id: user.role }).lean();
+
+      user._doc.role = role;
 
       delete user._doc.password;
 
