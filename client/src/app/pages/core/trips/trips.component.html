@@ -1,5 +1,42 @@
 <div id="trips">
   <app-nav active="trips"></app-nav>
-  <p>trips works!</p>
+
+  <div id="content">
+    <div class="header">
+      <h1>Viagens</h1>
+      <p>Listagem de todas suas viagens</p>
+    </div>
+
+    <div class="list">
+      <div class="list-item">
+        <div class="list-left">
+          <div class="list--Wrapper">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>De: Uberlândia</span>
+          </div>
+          <div class="list--Wrapper">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Para: Uberlândia</span>
+          </div>
+          <div class="item--Wrapper">
+            <div class="list--Wrapper">
+              <i class="fas fa-arrow-right"></i>
+              {{ getDate()}}
+            </div>
+            <div class="list--Wrapper">
+              <i class="fas fa-arrow-left"></i>
+              {{ getDate()}}
+            </div>
+          </div>
+        </div>
+
+        <div class="list-right">
+          <h3>Cartão</h3>
+          <h3>R$ 314,00</h3>
+          <h3>{{ getDate() }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
