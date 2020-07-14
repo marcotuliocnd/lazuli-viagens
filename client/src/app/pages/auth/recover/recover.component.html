@@ -1,0 +1,19 @@
+<div class="container--Out">
+  <div class="container--Inner">
+    <img src="../../../../assets/images/logo-lazulo-1-1024x1024.png" alt="Logomarca">
+
+    <div class="form--Box">
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <div class="placeholder">
+          <p *ngIf="message">{{ message }}</p>
+        </div>
+        <input formControlName="email" type="email" name="email" id="email" placeholder="E-MAIL" />
+        <input type="submit" [value]="!loading ? 'ENVIAR' : 'ENVIANDO...'">
+      </form>
+    </div>
+
+    <div class="action--Links">
+      <a (click)="goTo('/auth/login')">Voltar</a>
+    </div>
+  </div>
+</div>
