@@ -6,11 +6,11 @@ import { AuthService } from '../services/auth.service';
 import { AuthService as Auth} from '../../../services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   formGroup: FormGroup;
   loading: boolean = false;
@@ -23,8 +23,13 @@ export class LoginComponent implements OnInit {
     private auth: Auth,
   ) {
     this.formGroup = this.formBuilder.group({
+      name: '',
       email: '',
       password: '',
+      cellphone: '',
+      cpf: '',
+      rg: '',
+      birthdate_at: '',
     });
   }
 
@@ -37,7 +42,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.loading = true;
-    this.authService.login(this.formGroup.value).subscribe(
+    this.authService.register(this.formGroup.value).subscribe(
       (res) => {
         this.loading = false;
         this.auth.setToken(res.token);
@@ -47,9 +52,15 @@ export class LoginComponent implements OnInit {
         this.auth.logout();
         this.loading = false;
         if (err.status === 422) {
+          let index = 0;
           for (const error of err.error.errors) {
             this.message += String(error.param)[0].toUpperCase() + String(error.param).slice(1);
-            this.message += ', ';
+            if (index !== err.error.errors.length) {
+              this.message += ', ';
+            } else {
+              this.message += ' ';
+            }
+            index++;
           }
 
           this.message += 'inválidos!';

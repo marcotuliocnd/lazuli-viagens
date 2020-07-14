@@ -40,4 +40,8 @@ export class AuthService {
   login(data: object): Observable<IAuthResponse> {
     return this.http.post(`${environment.apiUrl}/auth/login`, data);
   }
+
+  register(data: object): Observable<IAuthResponse> {
+    return this.http.post(`${environment.apiUrl}/auth/register`, data);
+  }
 }

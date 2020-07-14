@@ -1,0 +1,25 @@
+<div class="container--Out">
+  <div class="container--Inner">
+    <img src="../../../../assets/images/logo-lazulo-1-1024x1024.png" alt="Logomarca">
+
+    <div class="form--Box">
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <div class="placeholder">
+          <p *ngIf="message">{{ message }}</p>
+        </div>
+        <input formControlName="name" type="text" name="name" id="name" placeholder="NOME" />
+        <input formControlName="email" type="email" name="email" id="email" placeholder="E-MAIL" />
+        <input formControlName="password" type="password" name="password" id="password" placeholder="SENHA" />
+        <input formControlName="birthdate_at" type="text" name="birthdate_at" id="birthdate_at" placeholder="DATA DE NASCIMENTO" />
+        <input formControlName="cpf" type="text" name="cpf" id="cpf" placeholder="CPF" />
+        <input formControlName="rg" type="text" name="rg" id="rg" placeholder="RG" />
+        <input formControlName="cellphone" type="text" name="cellphone" id="cellphone" placeholder="CELULAR" />
+        <input type="submit" [value]="!loading ? 'REGISTRAR' : 'REGISTRANDO...'">
+      </form>
+    </div>
+
+    <div class="action--Links">
+      <a (click)="goTo('/auth/login')">Voltar</a>
+    </div>
+  </div>
+</div>
