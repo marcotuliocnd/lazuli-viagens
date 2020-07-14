@@ -4,9 +4,12 @@
 
     <div class="form--Box">
       <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <div class="placeholder">
+          <p *ngIf="message">{{ message }}</p>
+        </div>
         <input formControlName="email" type="email" name="email" id="email" placeholder="E-MAIL" />
         <input formControlName="password" type="password" name="password" id="password" placeholder="SENHA" />
-        <input type="submit" value="Entrar">
+        <input type="submit" [value]="!loading ? 'ENTRAR' : 'ENTRANDO...'">
       </form>
     </div>
 
