@@ -12,12 +12,23 @@ export interface User {
   cpf: string;
   rg: string;
   birthdate_at: Date;
-  role: string;
+  role: Role;
   createdAt: Date;
   updatedAt: Date;
   __v: number;
   avatar_url?: any;
   id: string;
+}
+
+export interface Role {
+  _id: string;
+  deleted: boolean;
+  slug_history: string[];
+  name: string;
+  slug: string;
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
 }
 
 export interface Token {

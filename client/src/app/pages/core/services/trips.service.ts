@@ -31,15 +31,15 @@ export interface IResponse {
 export class TripService {
   constructor(private http: HttpClient) { }
 
-  list(): Observable<IResponse> {
-    return this.http.get(`${environment.apiUrl}/trips`);
+  list(page = 1): Observable<IResponse> {
+    return this.http.get(`${environment.apiUrl}/trips?page=${page}`);
   }
 
   store(data: object): Observable<IResponse> {
     return this.http.post(`${environment.apiUrl}/trips`, data);
   }
 
-  update(data: object): Observable<any> {
-    return this.http.patch(`${environment.apiUrl}/trips`, data);
+  update(data: object, id: string): Observable<any> {
+    return this.http.patch(`${environment.apiUrl}/trips/${id}`, data);
   }
 }

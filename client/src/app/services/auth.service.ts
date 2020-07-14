@@ -1,3 +1,4 @@
+import { Role } from '../interfaces/User';
 import { IToken } from '../interfaces/Token';
 import { Injectable } from '@angular/core';
 import { IUser } from '../interfaces/User';
@@ -33,7 +34,7 @@ export class AuthService {
     return JSON.parse(user) as IUser;
   }
 
-  getRole(): string {
+  getRole(): Role {
     const user = JSON.parse(localStorage.getItem(this.userKey)) as IUser;
     return user.role;
   }

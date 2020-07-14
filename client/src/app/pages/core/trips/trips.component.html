@@ -1,14 +1,106 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ edit ? 'Editar' : 'Nova' }} viagem</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="container" [formGroup]="formGroup">
+      <div class="row">
+        <div class="form-group col-lg-6">
+          <label for="from">Dê:</label>
+          <div class="input-group">
+            <input formControlName="from" id="from" class="form-control" placeholder="Ex.: São Paulo"  />
+          </div>
+        </div>
+        <div class="form-group col-lg-6">
+          <label for="to">Para:</label>
+          <div class="input-group">
+            <input formControlName="to" id="to" class="form-control" placeholder="Ex.: São Paulo"  />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-6">
+          <label for="started_at">Saída:</label>
+          <div class="input-group">
+            <input formControlName="started_at" class="form-control" id="started_at" placeholder="dd/mm/yyyy" type="text" ngbDatepicker #startedAt="ngbDatepicker"/>
+            <div class="calendar-button" (click)="startedAt.toggle()"><i class="fas fa-calendar-alt"></i></div>
+          </div>
+        </div>
+        <div class="form-group col-lg-6">
+          <label for="finished_at">Volta:</label>
+          <div class="input-group">
+            <input formControlName="finished_at" class="form-control" id="finished_at" placeholder="dd/mm/yyyy" type="text" ngbDatepicker #finishedAt="ngbDatepicker"/>
+            <div class="calendar-button" (click)="finishedAt.toggle()"><i class="fas fa-calendar-alt"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+          <label for="payment_at">Data do pagamento:</label>
+          <div class="input-group">
+            <input formControlName="payment_at" class="form-control" id="payment_at" placeholder="dd/mm/yyyy" type="text" ngbDatepicker #paymentAt="ngbDatepicker"/>
+            <div class="calendar-button" (click)="paymentAt.toggle()"><i class="fas fa-calendar-alt"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+          <label for="payment_method">Metódo do pagamento:</label>
+          <div class="input-group">
+            <input formControlName="payment_method" id="payment_method" class="form-control" placeholder="Ex.: Cartão"  />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+          <label for="value">Valor:</label>
+          <div class="input-group">
+            <span class="input-group-addon">R$</span>
+            <input formControlName="value" type="number" class="form-control" value="1000" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+          <label for="cpf">CPF ou RG do Usuário:</label>
+          <div class="input-group">
+            <input formControlName="cpf" id="cpf" class="form-control" placeholder="000.000.000-00"  />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button (click)="save(edit ? 'save' : 'create')" type="button" class="btn btn-outline-dark">{{ loading ? 'Enviando...' : edit ? 'Salvar' : 'Criar' }}</button>
+  </div>
+</ng-template>
+
 <div id="trips">
   <app-nav active="trips"></app-nav>
 
   <div id="content">
     <div class="header">
-      <h1>Viagens</h1>
-      <p>Listagem de todas suas viagens</p>
+      <div class="header-left">
+        <h1>Viagens</h1>
+        <p>Listagem de todas suas viagens</p>
+      </div>
+
+      <button (click)="openModal(content, 'create')" class="header-right" *ngIf="user.role.slug === 'admin'">
+        <i class="fas fa-plus"></i>
+        <span>Nova viagem</span>
+      </button>
     </div>
 
     <div class="list">
-      <div *ngFor="let trip of trips" class="list-item">
+      <div *ngFor="let trip of trips" (click)="openModal(content, 'edit', trip)" class="list-item">
         <div class="list-left">
           <div class="list--Wrapper">
             <i class="fas fa-map-marker-alt"></i>
@@ -31,11 +123,14 @@
         </div>
 
         <div class="list-right">
+          <img *ngIf="user.role.slug === 'admin'" src="../../../../assets/images/avatar.png" alt="Avatar">
           <h3>{{ trip.payment_method }}</h3>
           <h3>R$ {{ trip.value }}</h3>
           <h3>{{ getDate(trip.payment_at) }}</h3>
         </div>
       </div>
+
+      <a *ngIf="!disablePaginate" class="paginate-text" (click)="paginate()">{{ paginating ? '...' : 'Carregar mais...' }}</a>
     </div>
   </div>
 </div>

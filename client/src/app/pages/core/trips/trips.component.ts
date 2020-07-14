@@ -1,6 +1,11 @@
-import { TripService, Data } from './../services/trips.service';
-import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as moment from 'moment';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { AuthService } from './../../../services/auth.service';
+import { IUser } from './../../../interfaces/User';
+import { TripService, Data } from './../services/trips.service';
 
 @Component({
   selector: 'app-trips',
@@ -10,8 +15,34 @@ import * as moment from 'moment';
 export class TripsComponent implements OnInit {
 
   trips: Data[] = [];
+  user: IUser;
+  edit: boolean;
+  loading: boolean;
+  formGroup: FormGroup;
 
-  constructor(private tripService: TripService) { }
+  page = 1;
+  paginating: boolean = false;
+  disablePaginate: boolean = false;
+
+  constructor(
+    private tripService: TripService,
+    private authService: AuthService,
+    private modalService: NgbModal,
+    private formBuilder: FormBuilder,
+  ) {
+    this.user = this.authService.getUser();
+    this.formGroup = this.formBuilder.group({
+      id: '',
+      from: '',
+      to: '',
+      started_at: '',
+      finished_at: '',
+      payment_at: '',
+      payment_method: '',
+      value: 1000.0,
+      cpf: '',
+    });
+  }
 
   ngOnInit(): void {
     this.tripService.list().subscribe(
@@ -25,4 +56,83 @@ export class TripsComponent implements OnInit {
     return moment(datetime).format('DD/MM/YYYY');
   }
 
+  openModal(content, mode: string = 'create', trip = null) {
+    if (mode === 'create') {
+      this.formGroup.setValue({
+        id: '',
+        from: '',
+        to: '',
+        started_at: '',
+        finished_at: '',
+        payment_at: '',
+        payment_method: '',
+        value: 1000.0,
+        cpf: '',
+      });
+      this.edit = false;
+    } else if (mode === 'edit' && trip) {
+      this.formGroup.setValue({
+        id: trip._id,
+        from: trip.from,
+        to: trip.to,
+        started_at: new Date(trip.started_at),
+        finished_at: new Date(trip.finished_at),
+        payment_at: new Date(trip.payment_at),
+        payment_method: trip.payment_method,
+        value: trip.value,
+        cpf: trip.user_id.cpf,
+      });
+      this.edit = true;
+    }
+    this.modalService.open(content, { ariaLabelledBy: 'Modal Viagens' });
+  }
+
+  save(mode: string = 'create'): void {
+    this.loading = true;
+    if (mode === 'create') {
+      this.tripService.store(this.formGroup.value).subscribe(
+        (res) => {
+          this.tripService.list().subscribe(
+            (res) => {
+              this.trips = res.data;
+              this.loading = false;
+              this.modalService.dismissAll();
+            },
+          );
+        },
+      );
+
+    } else if (mode === 'save') {
+      this.tripService.update(this.formGroup.value, this.formGroup.value.id).subscribe(
+        (res) => {
+          this.tripService.list().subscribe(
+            (res) => {
+              this.trips = res.data;
+              this.loading = false;
+              this.modalService.dismissAll();
+            },
+          );
+        },
+      );
+    }
+  }
+
+
+  paginate() {
+    this.page++;
+
+    this.tripService.list(this.page).subscribe(
+      (res) => {
+        if (!res.data) {
+          this.disablePaginate = true;
+        }
+        res.data.forEach((el) => {
+          this.trips.push(el);
+        });
+      },
+      (err) => {
+        this.disablePaginate = true;
+      }
+    );
+  }
 }

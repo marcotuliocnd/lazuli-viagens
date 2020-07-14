@@ -20,13 +20,13 @@
         Viagens
       </span>
     </button>
-    <button class="menu-item" [ngClass]="{ 'active': active === 'fidelity' }">
+    <button *ngIf="user.role.slug !== 'admin'" class="menu-item" [ngClass]="{ 'active': active === 'fidelity' }">
       <i class="fas fa-heart fa-2x icon"></i>
       <span>
         Fidelidade
       </span>
     </button>
-    <button *ngIf="user.role === 'admin'" class="menu-item" [ngClass]="{ 'active': active === 'users' }">
+    <button *ngIf="user.role.slug === 'admin'" class="menu-item" [ngClass]="{ 'active': active === 'users' }">
       <i class="fas fa-user fa-2x icon"></i>
       <span>
         Usuários
