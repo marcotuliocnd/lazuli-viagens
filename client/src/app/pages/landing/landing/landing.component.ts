@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -11,7 +12,7 @@ import * as moment from 'moment';
 export class LandingComponent implements OnInit {
   contactForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, public router: Router) {
     this.contactForm = this.formBuilder.group({
       name: '',
       email: '',

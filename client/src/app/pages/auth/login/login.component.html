@@ -1,0 +1,18 @@
+<div class="container--Out">
+  <div class="container--Inner">
+    <img src="../../../../assets/images/logo-lazulo-1-1024x1024.png" alt="Logomarca">
+
+    <div class="form--Box">
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <input formControlName="email" type="email" name="email" id="email" placeholder="E-MAIL" />
+        <input formControlName="password" type="password" name="password" id="password" placeholder="SENHA" />
+        <input type="submit" value="Entrar">
+      </form>
+    </div>
+
+    <div class="action--Links">
+      <a (click)="goTo('register')">Ainda não tem conta? Cadastre-se</a>
+      <a (click)="goTo('recover')">Esqueci minha senha</a>
+    </div>
+  </div>
+</div>

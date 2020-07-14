@@ -6,7 +6,11 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingModule),
-  }
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
+  },
 ];
 
 @NgModule({
