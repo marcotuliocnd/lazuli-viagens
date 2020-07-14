@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { AuthService } from '../services/auth.service';
+import { AuthService as Auth} from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private auth: Auth,
   ) {
     this.formGroup = this.formBuilder.group({
       email: '',
@@ -38,14 +40,16 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.formGroup.value).subscribe(
       (res) => {
         this.loading = false;
-        console.log(res);
+        this.auth.setToken(res.token);
+        this.auth.setUser(res.user);
       },
       (err) => {
+        this.auth.logout();
         this.loading = false;
         if (err.status === 422) {
           let index = 0;
           for (const error of err.error.errors) {
-            this.message += error.param;
+            this.message += String(error.param).toUpperCase();
             console.log(error.param);
             if (index !== err.error.errors.length) {
               this.message += ', ';
@@ -57,7 +61,7 @@ export class LoginComponent implements OnInit {
 
           this.message += 'inválidos!';
         } else {
-          this.message = err.status === 400 ? 'E-mail ou senha inválido!' : 'Ocorreu um erro ao fazer login!';
+          this.message = err.status === 400 ? 'E-mail ou senha não encontrados!' : 'Ocorreu um erro ao fazer login!';
         }
 
         setTimeout(() => {
