@@ -18,6 +18,25 @@ export default {
     }
   },
 
+  async update(req, res) {
+    try {
+      const trip = await Trip.updateOne(
+        { _id: req.params.id },
+        req.body,
+        { new: true },
+      );
+
+      return res
+        .status(200)
+        .json({ success: true, data: trip });
+    } catch (err) {
+      console.error(err.message);
+      return res
+        .status(500)
+        .json({ success: false, message: 'Internal Server Error' });
+    }
+  },
+
   async list(req, res) {
     try {
       const { user } = req;
