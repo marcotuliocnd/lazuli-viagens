@@ -65,4 +65,8 @@ export class UsersService {
   photo(data): Observable<any> {
     return this.http.patch(`${environment.apiUrl}/users/me/avatar`, data);
   }
+
+  comprovante(data): Observable<any> {
+    return this.http.patch(`${environment.apiUrl}/users/me/comprovante`, data);
+  }
 }

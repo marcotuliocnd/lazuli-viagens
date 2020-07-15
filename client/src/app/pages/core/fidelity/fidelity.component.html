@@ -9,8 +9,23 @@
       </div>
     </div>
 
-    <div class="fidelity--Info">
+    <div class="fidelity--Info col-lg-12">
+      <h1>Seu plano atual:</h1>
+      <p>{{ user.fidelity.name }}</p>
 
+      <div class="level-container">
+        <img src="../../../../assets/images/level-timeline.png" alt="">
+        <div class="level-label">
+          <p>{{ user.fidelity_level_last }}</p>
+          <p>{{ user.fidelity_level }}</p>
+          <p>{{ user.fidelity_level }}</p>
+        </div>
+      </div>
+
+      <div class="comprovante">
+        <p>Enviar foto do comprovante de pagamento</p>
+        <input type="file" accept="image/*" #avatarFileInput (change)="onPhotoUpload($event)" />
+      </div>
     </div>
 
   </div>

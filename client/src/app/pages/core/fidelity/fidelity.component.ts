@@ -1,3 +1,6 @@
+import { UsersService } from './../services/users.service';
+import { AuthService } from '../../../services/auth.service';
+import { IUser } from './../../../interfaces/User';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FidelityComponent implements OnInit {
 
-  constructor() { }
+  user: IUser;
+  isSavingPhoto: boolean;
+
+  constructor(private authService: AuthService, private userService: UsersService) {
+    this.user = this.authService.getUser();
+  }
 
   ngOnInit(): void {
+  }
+
+  async onPhotoUpload(event) {
+    const avatar = event.target.files[0] || null;
+
+    if (avatar) {
+      this.isSavingPhoto = true;
+
+      const formData = new FormData();
+      formData.append('avatar', avatar);
+
+      this.userService.comprovante(formData).subscribe(
+        async (res) => {
+          this.isSavingPhoto = false;
+        },
+        async () => {
+          this.isSavingPhoto = false;
+        },
+      );
+    }
   }
 
 }

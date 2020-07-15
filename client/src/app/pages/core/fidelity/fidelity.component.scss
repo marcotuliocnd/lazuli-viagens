@@ -123,36 +123,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-radius: 22.5px;
+  box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, .2);
+  padding: 10% 10%;
+  justify-content: space-between;
 
-  img {
-    border-radius: 100%;
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    cursor: pointer;
+  h1 {
+    font-size: 23px;
   }
 
-  #send {
-    background-color: #FF7600;
-    color: #fff;
-    text-transform: uppercase;
-    border: none;
-    outline: none;
-
-    &:hover {
-      background-color: #a54d00;
-    }
+  p {
+    font-size: 23px;
   }
 
-  #sendPass {
-    background-color: #FF7600;
-    color: #fff;
-    text-transform: uppercase;
-    border: none;
-    outline: none;
-
-    &:hover {
-      background-color: #a54d00;
+  .level-container {
+    .level-label {
+      display: flex;
+      justify-content: space-between;
     }
   }
 }

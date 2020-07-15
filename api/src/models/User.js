@@ -52,6 +52,14 @@ const User = new Schema(
       type: String,
       required: false,
     },
+    fidelity_level_next: {
+      type: String,
+      required: false,
+    },
+    fidelity_level_last: {
+      type: String,
+      required: false,
+    },
     fidelity_started_at: {
       type: Date,
       required: false,
