@@ -6,7 +6,6 @@ const Fidelity = new Schema(
   {
     name: String,
     slug: String,
-    description: String,
   },
   {
     timestamps: true,

@@ -48,6 +48,14 @@ const User = new Schema(
       ref: 'fidelities',
       required: false,
     },
+    fidelity_level: {
+      type: String,
+      required: false,
+    },
+    fidelity_started_at: {
+      type: Date,
+      required: false,
+    },
     role: {
       type: Schema.Types.ObjectId,
       ref: 'roles',

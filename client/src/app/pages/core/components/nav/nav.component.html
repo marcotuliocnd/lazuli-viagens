@@ -20,7 +20,7 @@
         Viagens
       </span>
     </button>
-    <button *ngIf="user.role.slug !== 'admin'" class="menu-item" [ngClass]="{ 'active': active === 'fidelity' }">
+    <button (click)="router.navigate(['/panel/fidelity'])" *ngIf="user.role.slug !== 'admin'" class="menu-item" [ngClass]="{ 'active': active === 'fidelity' }">
       <i class="fas fa-heart fa-2x icon"></i>
       <span>
         Fidelidade

@@ -189,6 +189,7 @@ export default {
         .limit(limit * 1)
         .skip((page - 1) * limit)
         .populate('role')
+        .populate('fidelity')
         .sort({ createdAt: -1 })
         .exec();
 

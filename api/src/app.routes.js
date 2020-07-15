@@ -5,6 +5,7 @@ import appRoutes from './routes/app.routes';
 import authRoutes from './routes/auth.routes';
 import usersRoutes from './routes/users.routes';
 import tripsRoutes from './routes/trips.routes';
+import fidelityRoutes from './routes/fidelity.routes';
 
 const routes = Router();
 
@@ -13,5 +14,6 @@ routes.use('/roles', roleRoutes);
 routes.use('/auth', authRoutes);
 routes.use('/trips', tripsRoutes);
 routes.use('/users', usersRoutes);
+routes.use('/fidelities', fidelityRoutes);
 
 export default routes;

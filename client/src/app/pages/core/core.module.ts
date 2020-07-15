@@ -8,9 +8,10 @@ import { TripsComponent } from './trips/trips.component';
 import { NavComponent } from './components/nav/nav.component';
 import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
+import { FidelityComponent } from './fidelity/fidelity.component';
 
 @NgModule({
-  declarations: [TripsComponent, NavComponent, UsersComponent, ProfileComponent],
+  declarations: [TripsComponent, NavComponent, UsersComponent, ProfileComponent, FidelityComponent],
   imports: [
     CommonModule,
     CoreRoutingModule,

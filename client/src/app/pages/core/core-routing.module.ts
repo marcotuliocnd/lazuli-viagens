@@ -1,3 +1,4 @@
+import { FidelityComponent } from './fidelity/fidelity.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
 import { TripsComponent } from './trips/trips.component';
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+  },
+  {
+    path: 'fidelity',
+    component: FidelityComponent,
   },
 ];
 
