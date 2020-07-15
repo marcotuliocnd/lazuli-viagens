@@ -8,6 +8,7 @@ import emailTemplate from '../config/email.templates';
 
 import User from '../models/User';
 import Role from '../models/Role';
+import Fidelity from '../models/Fidelity';
 
 function generateToken(payload = {}) {
   return jwt.sign(
@@ -141,6 +142,10 @@ export default {
       const role = await Role.findOne({ _id: user.role }).lean();
 
       user._doc.role = role;
+
+      const fidelity = await Fidelity.findOne({ _id: user.fidelity }).lean();
+
+      user._doc.fidelity = fidelity;
 
       delete user._doc.password;
 
