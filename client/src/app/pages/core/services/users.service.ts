@@ -53,4 +53,16 @@ export class UsersService {
   update(data: object, id: string): Observable<any> {
     return this.http.patch(`${environment.apiUrl}/users/${id}`, data);
   }
+
+  updateMe(data: object): Observable<any> {
+    return this.http.patch(`${environment.apiUrl}/users/me`, data);
+  }
+
+  updatePass(data: object): Observable<any> {
+    return this.http.patch(`${environment.apiUrl}/users/me/password`, data);
+  }
+
+  photo(data): Observable<any> {
+    return this.http.patch(`${environment.apiUrl}/users/me/avatar`, data);
+  }
 }

@@ -7,9 +7,10 @@ import { CoreRoutingModule } from './core-routing.module';
 import { TripsComponent } from './trips/trips.component';
 import { NavComponent } from './components/nav/nav.component';
 import { UsersComponent } from './users/users.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
-  declarations: [TripsComponent, NavComponent, UsersComponent],
+  declarations: [TripsComponent, NavComponent, UsersComponent, ProfileComponent],
   imports: [
     CommonModule,
     CoreRoutingModule,

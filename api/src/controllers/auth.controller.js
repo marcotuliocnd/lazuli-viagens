@@ -58,8 +58,6 @@ export default {
 
       const role = await Role.findOne({ slug: 'user' }).lean();
 
-      user._doc.role = role;
-
       user = new User({
         ...req.body,
         password: passCrypted,

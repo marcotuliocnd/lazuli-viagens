@@ -84,3 +84,15 @@
     }
   }
 }
+
+.input-group-addon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #EEEEEE;
+  font-size: .8rem;
+  padding: .5rem;
+  color: #6C6C6C;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}

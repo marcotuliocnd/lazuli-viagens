@@ -1,0 +1,145 @@
+<div id="profile">
+  <app-nav active="profile"></app-nav>
+
+  <div id="content">
+    <div class="header">
+      <div class="header-left">
+        <h1>Seu perfil</h1>
+        <p>Modifique as informações do seu perfil</p>
+      </div>
+    </div>
+
+    <div class="profile--Info">
+      <img (click)="avatarFileInput.click(); avatarFileInput.value = ''" [src]="user?.avatar_url" onerror="event.target.src = '../../../../assets/images/avatar.png'" alt="">
+      <input type="file" class="d-none" accept="image/*" #avatarFileInput (change)="onAvatarUpload($event)" />
+
+      <form (ngSubmit)="saveInfo()" class="container" [formGroup]="formGroup">
+        <div class="placeholder">
+          <p *ngIf="message">{{ message }}</p>
+        </div>
+        <div class="row">
+          <div class="form-group col-lg-12">
+            <label for="name">Nome*:</label>
+            <div class="input-group">
+              <input formControlName="name" id="name" class="form-control" placeholder="Ex.: São Paulo"  />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-12">
+            <label for="email">E-mail*:</label>
+            <div class="input-group">
+              <input formControlName="email" id="email" class="form-control" placeholder="Ex.: São Paulo"  />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-12">
+            <label for="cpf">CPF*:</label>
+            <div class="input-group">
+              <input formControlName="cpf" class="form-control" id="cpf" placeholder="000.000.000" type="text" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-12">
+            <label for="rg">RG*:</label>
+            <div class="input-group">
+              <input formControlName="rg" class="form-control" id="rg" placeholder="AA-00.000.000" type="text" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-12">
+            <label for="cellphone">Celular*:</label>
+            <div class="input-group">
+              <input formControlName="cellphone" class="form-control" id="cellphone" placeholder="+55 00 00000-0000" type="text" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-12">
+            <label for="phone">Telefone fixo:</label>
+            <div class="input-group">
+              <input formControlName="phone" id="phone" class="form-control" placeholder="+55 00 0000-0000"  />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-12">
+            <label for="birthdate_at">Data de nascimento*:</label>
+            <div class="input-group">
+              <input formControlName="birthdate_at" class="form-control" id="birthdate_at" placeholder="dd/mm/yyyy" type="text" ngbDatepicker #birthdateAt="ngbDatepicker"/>
+              <div class="calendar-button" (click)="birthdateAt.toggle()"><i class="fas fa-calendar-alt"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-12">
+            <label for="passport_number">Número de Passaporte:</label>
+            <div class="input-group">
+              <input formControlName="passport_number" id="passport_number" class="form-control" placeholder="00000000000000"  />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-12">
+            <div class="input-group">
+              <input type="submit" id="send" class="form-control" [value]="loading ? 'Salvando...' : 'Salvar'"  />
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <form (ngSubmit)="savePassword()" class="container" [formGroup]="passwordForm">
+        <div class="placeholder">
+          <p *ngIf="message">{{ message }}</p>
+        </div>
+        <div class="row">
+          <div class="form-group col-lg-12">
+            <label for="lastPassword">Senha atual:</label>
+            <div class="input-group">
+              <input formControlName="lastPassword" type="password" id="lastPassword" class="form-control" placeholder="*****"  />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-12">
+            <label for="password">Senha:</label>
+            <div class="input-group">
+              <input formControlName="password" type="password" id="password" class="form-control" placeholder="*****"  />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-12">
+            <label for="passwordConfirm">Confirme sua senha:</label>
+            <div class="input-group">
+              <input formControlName="passwordConfirm" type="password" id="passwordConfirm" class="form-control" placeholder="*******"  />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-12">
+            <div class="input-group">
+              <input type="submit" id="sendPass" class="form-control" [value]="loading ? 'Salvando...' : 'Salvar'"  />
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>

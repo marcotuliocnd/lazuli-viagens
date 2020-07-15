@@ -103,7 +103,7 @@
     <div class="list">
       <div *ngFor="let userEach of users" (click)="openModal(content, 'edit', userEach)" class="list-item">
         <div class="list-left">
-          <img src="../../../../assets/images/avatar.png" alt="Avatar">
+          <img [src]="userEach.avatar_url" onerror="event.target.src = '../../../../assets/images/avatar.png'" alt="">
         </div>
 
         <div class="list-right">

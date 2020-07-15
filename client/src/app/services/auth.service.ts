@@ -39,6 +39,17 @@ export class AuthService {
     return user.role;
   }
 
+  setAvatar(avatarUrl: string): void {
+    const user = JSON.parse(localStorage.getItem(this.userKey)) as IUser;
+    user.avatar_url = avatarUrl;
+    localStorage.setItem(this.userKey, JSON.stringify(user));
+  }
+
+  getAvatar(): string | null {
+    const user = JSON.parse(localStorage.getItem(this.userKey)) as IUser;
+    return user.avatar_url;
+  }
+
   setToken(token: IToken): void {
     localStorage.setItem(this.tokenKey, JSON.stringify(token));
   }

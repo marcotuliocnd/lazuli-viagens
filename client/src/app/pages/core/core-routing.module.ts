@@ -1,3 +1,4 @@
+import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
 import { TripsComponent } from './trips/trips.component';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'users',
     component: UsersComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
   },
 ];
 

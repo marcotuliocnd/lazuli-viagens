@@ -4,6 +4,8 @@ export interface IUser {
   name: string;
   email: string;
   cellphone: string;
+  phone?: string;
+  passport_number?: string;
   cpf: string;
   rg: string;
   birthdate_at: Date;
