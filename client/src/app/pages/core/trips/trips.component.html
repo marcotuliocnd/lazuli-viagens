@@ -123,7 +123,7 @@
         </div>
 
         <div class="list-right">
-          <img *ngIf="user.role.slug === 'admin'" src="../../../../assets/images/avatar.png" alt="Avatar">
+          <img *ngIf="user.role.slug === 'admin'" [src]="trip.user_id.avatar_url" onerror="event.target.src = '../../../../assets/images/avatar.png'" alt="">
           <h3>{{ trip.payment_method }}</h3>
           <h3>R$ {{ trip.value }}</h3>
           <h3>{{ getDate(trip.payment_at) }}</h3>

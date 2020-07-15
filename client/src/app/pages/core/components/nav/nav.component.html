@@ -1,6 +1,6 @@
 <div id="sidebar">
   <div class="header">
-    <img (click)="avatarFileInput.click(); avatarFileInput.value = ''" [src]="user?.avatar_url" onerror="event.target.src = '../../../../../assets/images/avatar.png'" alt="">
+    <img [src]="user?.avatar_url" onerror="event.target.src = '../../../../../assets/images/avatar.png'" alt="">
 
     <div (click)="router.navigate(['/panel/profile'])" class="user--Info">
       <h1>{{ user.name }}</h1>

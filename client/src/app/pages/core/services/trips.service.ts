@@ -13,7 +13,7 @@ export interface Data {
   payment_at: Date;
   payment_method: string;
   value: number;
-  user_id: string;
+  user_id: any;
   createdAt: Date;
   updatedAt: Date;
   __v: number;
