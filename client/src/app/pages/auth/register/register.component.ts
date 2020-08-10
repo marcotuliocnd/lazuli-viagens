@@ -1,3 +1,4 @@
+import { IUser } from './../../../interfaces/User';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -46,7 +47,7 @@ export class RegisterComponent implements OnInit {
       (res) => {
         this.loading = false;
         this.auth.setToken(res.token);
-        this.auth.setUser(res.user);
+        this.auth.setUser(res.user as IUser);
         this.router.navigate(['/panel']);
       },
       (err) => {
