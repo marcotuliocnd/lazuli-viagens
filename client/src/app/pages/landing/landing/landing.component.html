@@ -299,8 +299,8 @@
           <div class="form-group col-md-12">
             <label for="inputState">Selecione</label>
             <select id="inputState" class="form-control" placeholder="Escolha" formControlName="mode">
-              <option>Ida e volta</option>
-              <option>Somente ida</option>
+              <option value="1">Ida e volta</option>
+              <option value="2">Somente ida</option>
             </select>
           </div>
 
@@ -308,12 +308,12 @@
 
         <div class="form-row">
 
-          <div class="form-group col-md-6" style="display: flex; flex-direction: column;">
+          <div class="form-group" [ngClass]="contactForm.value.mode === '1' ? 'col-md-6' : 'col-md-12'" style="display: flex; flex-direction: column;">
             <label for="inputIda">Selecione a data de ida</label>
             <ngb-datepicker name="inputIda" style="background-color: white; width: 240px; align-self: center;" (dateSelect)="onDateSelect($event, 'go')"></ngb-datepicker>
           </div>
 
-          <div class="form-group col-md-6" style="display: flex; flex-direction: column;">
+          <div *ngIf="contactForm.value.mode === '1'" class="form-group col-md-6" style="display: flex; flex-direction: column;">
             <label for="inputVolta">Selecione a data de volta</label>
             <ngb-datepicker name="inputVolta" style="background-color: white; width: 240px; align-self: center;" (dateSelect)="onDateSelect($event, 'back')"></ngb-datepicker>
           </div>
