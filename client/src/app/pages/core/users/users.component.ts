@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as moment from 'moment';
@@ -30,6 +31,7 @@ export class UsersComponent implements OnInit {
     private authService: AuthService,
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
+    private toastr: ToastrService,
   ) {
     this.user = this.authService.getUser();
     this.formGroup = this.formBuilder.group({
@@ -80,9 +82,10 @@ export class UsersComponent implements OnInit {
         rg: user.rg || '',
         cellphone: user.cellphone,
         phone: user.phone || '',
-        birthdate_at: user.birthdate_at,
+        birthdate_at: moment(user.birthdate_at).toDate(),
         passport_number: user.passport_number || '',
       });
+
       this.edit = true;
     }
     this.modalService.open(content, { ariaLabelledBy: 'Modal Viagens' });
@@ -91,8 +94,7 @@ export class UsersComponent implements OnInit {
   save(mode: string = 'create'): void {
     const { value } = this.formGroup;
     if (!value.name || !value.name || !value.cpf || !value.rg || !value.cellphone || !value.birthdate_at) {
-      this.message = 'Por favor, preencha todos os campos obrigatórios!'
-      setTimeout(() => this.message = '', 5000);
+      this.toastr.error('Por favor, preencha todos os campos obrigatórios!');
       return;
     }
     this.loading = true;
@@ -103,10 +105,15 @@ export class UsersComponent implements OnInit {
             (res) => {
               this.users = res.data;
               this.loading = false;
+              this.toastr.success('Usuário criado com sucesso!');
               this.modalService.dismissAll();
             },
           );
         },
+        (err) => {
+          this.loading = false;
+          this.toastr.error(`Houve um erro no servidor, contate um administrador para lhe auxiliar!`);
+        }
       );
 
     } else if (mode === 'save') {
@@ -116,10 +123,15 @@ export class UsersComponent implements OnInit {
             (res) => {
               this.users = res.data;
               this.loading = false;
+              this.toastr.success('Modificações feitas com sucesso!');
               this.modalService.dismissAll();
             },
           );
         },
+        (err) => {
+          this.loading = false;
+          this.toastr.error(`Houve um erro no servidor, contate um administrador para lhe auxiliar!`);
+        }
       );
     }
   }
