@@ -4,7 +4,7 @@
 
     <div (click)="router.navigate(['/panel/profile'])" class="user--Info">
       <h1>{{ user.name }}</h1>
-      <p>Premium</p>
+      <p>{{ user?.fidelity || 'Nenhum plano' }}</p>
     </div>
   </div>
 
