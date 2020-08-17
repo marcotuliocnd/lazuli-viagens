@@ -108,10 +108,11 @@
 
         <div class="list-right">
           <h3>{{ userEach.name }}</h3>
-          <h3>{{ userEach.fidelity ? userEach.fidelity : 'Nenhum' }}</h3>
+          <h3>{{ userEach?.fidelity || 'Nenhum' }}</h3>
         </div>
       </div>
-
+    </div>
+    <div class="paginate">
       <a *ngIf="!disablePaginate" class="paginate-text" (click)="paginate()">{{ paginating ? '...' : 'Carregar mais...' }}</a>
     </div>
   </div>
