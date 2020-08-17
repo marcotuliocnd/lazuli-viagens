@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <div class="fidelity--Info col-lg-12">
+    <div class="fidelity--Info col-lg-12" *ngIf="user.fidelity">
       <h1>Seu plano atual:</h1>
       <p>{{ user.fidelity.name }}</p>
 
@@ -26,6 +26,15 @@
         <p>Enviar foto do comprovante de pagamento</p>
         <input type="file" accept="image/*" #avatarFileInput (change)="onPhotoUpload($event)" />
       </div>
+    </div>
+
+    <div class="fidelity--Info col-lg-12" *ngIf="!user.fidelity">
+      <h1>Você não possuí nenhum plano atualmente!</h1>
+      <p>Veja as vantagens em de se ter um plano Lazuli Viagens:</p>
+
+      <video width="100%" controls>
+        <source src="../../../../assets/videos/videoplayback.mp4" />
+      </video>
     </div>
 
   </div>
