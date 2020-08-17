@@ -1,3 +1,5 @@
+import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxMaskModule } from 'ngx-mask';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,6 +17,8 @@ import { RecoverComponent } from './recover/recover.component';
     AuthRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxMaskModule.forRoot(),
+    NgbDatepickerModule,
   ]
 })
 export class AuthModule { }
