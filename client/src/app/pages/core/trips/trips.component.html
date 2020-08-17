@@ -11,13 +11,13 @@
         <div class="form-group col-lg-6">
           <label for="from">Dê:</label>
           <div class="input-group">
-            <input formControlName="from" id="from" class="form-control" placeholder="Ex.: São Paulo"  />
+            <input [attr.disabled]="user?.role?.slug !== 'admin' ? true : null" formControlName="from" id="from" class="form-control" placeholder="Ex.: São Paulo"  />
           </div>
         </div>
         <div class="form-group col-lg-6">
           <label for="to">Para:</label>
           <div class="input-group">
-            <input formControlName="to" id="to" class="form-control" placeholder="Ex.: São Paulo"  />
+            <input [attr.disabled]="user?.role?.slug !== 'admin' ? true : null" formControlName="to" id="to" class="form-control" placeholder="Ex.: São Paulo"  />
           </div>
         </div>
       </div>
@@ -26,15 +26,15 @@
         <div class="form-group col-lg-6">
           <label for="started_at">Saída:</label>
           <div class="input-group">
-            <input formControlName="started_at" class="form-control" id="started_at" placeholder="dd/mm/yyyy" type="text" ngbDatepicker #startedAt="ngbDatepicker"/>
-            <div class="calendar-button" (click)="startedAt.toggle()"><i class="fas fa-calendar-alt"></i></div>
+            <input [disabled]="user?.role?.slug !== 'admin'" formControlName="started_at" class="form-control" id="started_at" placeholder="dd/mm/yyyy" type="text" ngbDatepicker #startedAt="ngbDatepicker"/>
+            <div [ngClass]="{ 'disabled': user?.role?.slug !== 'admin'}" class="calendar-button" (click)="user?.role?.slug === 'admin' ? startedAt.toggle() : null"><i class="fas fa-calendar-alt"></i></div>
           </div>
         </div>
         <div class="form-group col-lg-6">
           <label for="finished_at">Volta:</label>
           <div class="input-group">
-            <input formControlName="finished_at" class="form-control" id="finished_at" placeholder="dd/mm/yyyy" type="text" ngbDatepicker #finishedAt="ngbDatepicker"/>
-            <div class="calendar-button" (click)="finishedAt.toggle()"><i class="fas fa-calendar-alt"></i></div>
+            <input [disabled]="user?.role?.slug !== 'admin'" formControlName="finished_at" class="form-control" id="finished_at" placeholder="dd/mm/yyyy" type="text" ngbDatepicker #finishedAt="ngbDatepicker"/>
+            <div [ngClass]="{ 'disabled': user?.role?.slug !== 'admin'}" class="calendar-button" (click)="user?.role?.slug === 'admin' ? finishedAt.toggle() : null"><i class="fas fa-calendar-alt"></i></div>
           </div>
         </div>
       </div>
@@ -43,8 +43,8 @@
         <div class="form-group col-lg-12">
           <label for="payment_at">Data do pagamento:</label>
           <div class="input-group">
-            <input formControlName="payment_at" class="form-control" id="payment_at" placeholder="dd/mm/yyyy" type="text" ngbDatepicker #paymentAt="ngbDatepicker"/>
-            <div class="calendar-button" (click)="paymentAt.toggle()"><i class="fas fa-calendar-alt"></i></div>
+            <input [disabled]="user?.role?.slug !== 'admin'" formControlName="payment_at" class="form-control" id="payment_at" placeholder="dd/mm/yyyy" type="text" ngbDatepicker #paymentAt="ngbDatepicker"/>
+            <div [ngClass]="{ 'disabled': user?.role?.slug !== 'admin'}" class="calendar-button" (click)="user?.role?.slug === 'admin' ? paymentAt.toggle() : null"><i class="fas fa-calendar-alt"></i></div>
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@
         <div class="form-group col-lg-12">
           <label for="payment_method">Metódo do pagamento:</label>
           <div class="input-group">
-            <input formControlName="payment_method" id="payment_method" class="form-control" placeholder="Ex.: Cartão"  />
+            <input [attr.disabled]="user?.role?.slug !== 'admin' ? true : null" formControlName="payment_method" id="payment_method" class="form-control" placeholder="Ex.: Cartão"  />
           </div>
         </div>
       </div>
@@ -63,23 +63,32 @@
           <label for="value">Valor:</label>
           <div class="input-group">
             <span class="input-group-addon">R$</span>
-            <input formControlName="value" type="number" class="form-control" value="1000" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
+            <input [attr.disabled]="user?.role?.slug !== 'admin' ? true : null" formControlName="value" type="number" class="form-control" value="1000" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
           </div>
         </div>
       </div>
 
       <div class="row">
         <div class="form-group col-lg-12">
-          <label for="cpf">CPF ou RG do Usuário:</label>
+          <label for="cpf">CPF do Usuário:</label>
           <div class="input-group">
-            <input formControlName="cpf" id="cpf" class="form-control" placeholder="000.000.000-00"  />
+            <input [attr.disabled]="user?.role?.slug !== 'admin' ? true : null" mask="000.000.000-00" formControlName="cpf" id="cpf" class="form-control" placeholder="000.000.000-00"  />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+          <label for="cpf">Mais informações:</label>
+          <div class="input-group">
+            <textarea [attr.disabled]="user?.role?.slug !== 'admin' ? true : null" formControlName="more" id="more" class="form-control"></textarea>
           </div>
         </div>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button (click)="save(edit ? 'save' : 'create')" type="button" class="btn btn-outline-dark">{{ loading ? 'Enviando...' : edit ? 'Salvar' : 'Criar' }}</button>
+    <button *ngIf="user?.role?.slug === 'admin'" (click)="save(edit ? 'save' : 'create')" type="button" class="btn btn-outline-dark">{{ loading ? 'Enviando...' : edit ? 'Salvar' : 'Criar' }}</button>
   </div>
 </ng-template>
 

@@ -15,6 +15,7 @@ const Trip = new Schema(
       ref: 'users',
       required: true,
     },
+    more: String,
   },
   {
     timestamps: true,

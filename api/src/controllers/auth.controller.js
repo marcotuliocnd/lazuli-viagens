@@ -66,6 +66,13 @@ export default {
       });
 
       await user.save();
+
+      user._doc.role = role;
+
+      const fidelity = await Fidelity.findOne({ _id: user.fidelity }).lean();
+
+      user._doc.fidelity = fidelity;
+
       delete user._doc.password;
 
       const token = {

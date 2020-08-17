@@ -31,6 +31,7 @@ export class TripsComponent implements OnInit {
     private formBuilder: FormBuilder,
   ) {
     this.user = this.authService.getUser();
+    console.log(this.user?.role?.slug !== 'admin')
     this.formGroup = this.formBuilder.group({
       id: '',
       from: '',
@@ -41,6 +42,7 @@ export class TripsComponent implements OnInit {
       payment_method: '',
       value: 1000.0,
       cpf: '',
+      more: '',
     });
   }
 
@@ -68,6 +70,7 @@ export class TripsComponent implements OnInit {
         payment_method: '',
         value: 1000.0,
         cpf: '',
+        more: '',
       });
       this.edit = false;
     } else if (mode === 'edit' && trip) {
@@ -81,6 +84,7 @@ export class TripsComponent implements OnInit {
         payment_method: trip.payment_method,
         value: trip.value,
         cpf: trip.user_id.cpf,
+        more: trip.more || '',
       });
       this.edit = true;
     }
