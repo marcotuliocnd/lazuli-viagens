@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { IUser } from './../../../interfaces/User';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private auth: Auth,
+    private toastr: ToastrService,
   ) {
     this.formGroup = this.formBuilder.group({
       email: '',
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.formGroup.value).subscribe(
       (res) => {
         this.loading = false;
+        this.toastr.success('Logado com sucesso!');
         this.auth.setToken(res.token);
         this.auth.setUser(res.user as IUser);
         this.router.navigate(['panel']);
@@ -48,20 +51,19 @@ export class LoginComponent implements OnInit {
       (err) => {
         this.auth.logout();
         this.loading = false;
+        let message = '';
         if (err.status === 422) {
           for (const error of err.error.errors) {
-            this.message += String(error.param)[0].toUpperCase() + String(error.param).slice(1);
-            this.message += ', ';
+            message += String(error.param)[0].toUpperCase() + String(error.param).slice(1);
+            message += ', ';
           }
 
-          this.message += 'inválidos!';
+          message += 'inválidos!';
         } else {
-          this.message = err.status === 400 ? 'E-mail ou senha não encontrados!' : 'Ocorreu um erro ao fazer login!';
+          message = err.status === 400 ? 'E-mail ou senha não encontrados!' : 'Ocorreu um erro ao fazer login!';
         }
 
-        setTimeout(() => {
-          this.message = '';
-        }, 5000);
+        this.toastr.error(message);
       }
     );
   }

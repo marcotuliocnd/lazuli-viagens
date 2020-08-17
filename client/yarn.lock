@@ -117,10 +117,12 @@
     ora "4.0.3"
     rxjs "6.5.4"
 
-"@angular/animations@~9.1.1":
-  version "9.1.11"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-9.1.11.tgz#2c7b6e584df0ba0884d05f01fa7ab86c1fdd1c5e"
-  integrity sha512-VKAExUnEJfo1PDQKagpx2pn+QMZCsPLRiADzTdl4U0VPylK3ALbn4ZNY9UbdwyE2plitz++LkH7sEGGfh+PNrQ==
+"@angular/animations@^10.0.10":
+  version "10.0.10"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-10.0.10.tgz#c4f872e2917e9e7d4ffd04a64539e2aae67eef0c"
+  integrity sha512-lIbNeLVVl9bO41orPFpKoobCvxZIZ2wdcKJBEFtQiOdw0khRQQ8k7so4TAWOZXRJR+MkOUCjU2pO8gbMXgBweQ==
+  dependencies:
+    tslib "^2.0.0"
 
 "@angular/cli@~9.1.1":
   version "9.1.10"
@@ -4958,6 +4960,13 @@ ngx-mask@^10.0.1:
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/ngx-mask/-/ngx-mask-10.0.1.tgz#c8b0c14e49b57e0c9e1b0cf00957188b4ea19cea"
   integrity sha512-hk5wEocNvZazZXrjwor6YqRWeJBiKWZmy1VE/K4AJAWn3f5lOPEODsjaoA4LTK6HYksO3kYCpE2z+A5UYtK3HA==
+  dependencies:
+    tslib "^2.0.0"
+
+ngx-toastr@^13.0.0:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-toastr/-/ngx-toastr-13.0.0.tgz#7d011117c4352d824399de2478d2aedeec5c9391"
+  integrity sha512-p/isNGkuCTCrCaUimrHzmR/OFP9u0HomkbqBJDmbIzpUNdCGILfRF6FiuJKhb7X9XQsFAKDe3MK3PejFPRCyrg==
   dependencies:
     tslib "^2.0.0"
 

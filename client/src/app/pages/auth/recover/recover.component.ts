@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -15,13 +16,14 @@ export class RecoverComponent implements OnInit {
 
   formGroup: FormGroup;
   loading: boolean = false;
-  message: string = 'Enviaremos uma nova senha para seu e-mail:';
+  message: string = 'Enviamos para esse endereço de e-mail um passo a passo para você recuperar sua conta!';
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private auth: Auth,
+    private toastr: ToastrService,
   ) {
     this.formGroup = this.formBuilder.group({
       email: '',
@@ -41,10 +43,12 @@ export class RecoverComponent implements OnInit {
       (res) => {
         this.loading = false;
         this.router.navigate(['/auth/login']);
+        this.toastr.success(this.message);
       },
       (err) => {
-        this.auth.logout();
         this.loading = false;
+        this.router.navigate(['/auth/login']);
+        this.toastr.success(this.message);
       }
     );
   }

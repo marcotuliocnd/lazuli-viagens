@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule  } from '@angular/forms';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -20,10 +22,12 @@ const maskConfig: Partial<IConfig> = {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgxMaskModule.forRoot(maskConfig),
+    ToastrModule.forRoot(),
   ],
   providers: [
     {
