@@ -1,3 +1,4 @@
+import { NgxMaskModule } from 'ngx-mask';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,6 +20,7 @@ import { FidelityComponent } from './fidelity/fidelity.component';
     NgbDatepickerModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })

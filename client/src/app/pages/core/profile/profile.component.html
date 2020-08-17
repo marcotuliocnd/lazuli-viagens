@@ -39,7 +39,7 @@
           <div class="form-group col-lg-12">
             <label for="cpf">CPF*:</label>
             <div class="input-group">
-              <input formControlName="cpf" class="form-control" id="cpf" placeholder="000.000.000" type="text" />
+              <input mask="000.000.000-00" formControlName="cpf" class="form-control" id="cpf" placeholder="000.000.000" type="text" />
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@
           <div class="form-group col-lg-12">
             <label for="rg">RG*:</label>
             <div class="input-group">
-              <input formControlName="rg" class="form-control" id="rg" placeholder="AA-00.000.000" type="text" />
+              <input mask="AA-00.000.000" formControlName="rg" class="form-control" id="rg" placeholder="AA-00.000.000" type="text" />
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@
           <div class="form-group col-lg-12">
             <label for="cellphone">Celular*:</label>
             <div class="input-group">
-              <input formControlName="cellphone" class="form-control" id="cellphone" placeholder="+55 00 00000-0000" type="text" />
+              <input prefix="+55" mask=" (00) 0000-0000" formControlName="cellphone" class="form-control" id="cellphone" placeholder="+55 00 00000-0000" type="text" />
             </div>
           </div>
         </div>
@@ -66,7 +66,7 @@
           <div class="form-group col-lg-12">
             <label for="phone">Telefone fixo:</label>
             <div class="input-group">
-              <input formControlName="phone" id="phone" class="form-control" placeholder="+55 00 0000-0000"  />
+              <input prefix="+55" mask=" (00) 0000-0000" formControlName="phone" id="phone" class="form-control" placeholder="+55 00 0000-0000"  />
             </div>
           </div>
         </div>
