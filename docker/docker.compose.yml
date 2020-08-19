@@ -15,7 +15,7 @@ services:
     container_name: "lazuli-production-api"
     image: node:10
     volumes:
-      - ./api:/home/node/app
+      - ../api:/home/node/app
     working_dir: /home/node/app
     links:
       - lazuli-mongodb:mongodb
