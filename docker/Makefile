@@ -1,2 +1,2 @@
 lazuli-p:
-	docker-compose -f docker-compose-lazuli-production.yml up -d
+	docker-compose docker-compose.yml up -d
