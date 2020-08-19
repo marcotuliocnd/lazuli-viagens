@@ -33,8 +33,8 @@ app.use('/public', express.static(path.join(__dirname, '..', 'public')));
  */
 if (process.env.NODE_ENV === 'PRODUCTION') {
   https.createServer({
-    key: fs.readFileSync('./server.crt'),
-    cert: fs.readFileSync('./server.key'),
+    cert: fs.readFileSync('./server.crt'),
+    key: fs.readFileSync('./server.key'),
   }, app).listen(process.env.APP_PORT, () => {
     console.log(`> Server is running on port ${process.env.APP_PORT} in mode ${process.env.NODE_ENV}`);
   });
