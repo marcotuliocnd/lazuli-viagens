@@ -205,20 +205,18 @@ export default {
 
         const transport = nodemailer.createTransport(
           {
-            host: 'smtp.gmail.com',
+            host: 'mail.lazuliviagens.com.br',
             port: 465,
             secure: true,
             auth: {
-              type: 'OAuth2',
-              user: 'naoresponder@artmakerdesign.com.br',
-              serviceClient: mailConfig.client_id,
-              privateKey: mailConfig.private_key,
+              user: 'naoresponder@lazuliviagens.com.br',
+              pass: 'acessol4Zul1'
             },
           },
         );
 
         const mailOptions = {
-          from: 'Lazuli Viagens <naoresponder@artmakerdesign.com.br',
+          from: 'Lazuli Viagens <naoresponder@lazuliviagens.com.br',
           to: user.email,
           subject: 'Lazuli Viagens - Redefinição de senha',
           html: emailTemplate.recover(user.name, randomPassword),
