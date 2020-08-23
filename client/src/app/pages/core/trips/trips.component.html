@@ -109,7 +109,7 @@
     </div>
 
     <div class="list">
-      <div *ngFor="let trip of trips" (click)="openModal(content, 'edit', trip)" class="list-item">
+      <div *ngFor="let trip of trips" (click)="user?.role?.slug === 'admin' ? openModal(content, 'edit', trip) : null" class="list-item">
         <div class="list-left">
           <div class="list--Wrapper">
             <i class="fas fa-map-marker-alt"></i>
@@ -119,16 +119,18 @@
             <i class="fas fa-map-marker-alt"></i>
             <span>Para: {{ trip.to }}</span>
           </div>
-          <div class="item--Wrapper">
-            <div class="list--Wrapper">
-              <i class="fas fa-arrow-right"></i>
-              {{ getDate(trip.started_at)}}
-            </div>
-            <div class="list--Wrapper">
-              <i class="fas fa-arrow-left"></i>
-              {{ getDate(trip.finished_at)}}
-            </div>
+          <div class="list--Wrapper">
+            <i class="fas fa-arrow-right"></i>
+            {{ getDate(trip.started_at)}}
           </div>
+          <div class="list--Wrapper">
+            <i class="fas fa-arrow-left"></i>
+            {{ getDate(trip.finished_at)}}
+          </div>
+        </div>
+
+        <div class="list-center">
+          <p>{{ trip.more }}</p>
         </div>
 
         <div class="list-right">

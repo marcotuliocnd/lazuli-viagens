@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RecoverComponent } from './recover/recover.component';
 
+import { NgxPhoneMaskBrModule } from 'ngx-phone-mask-br';
+
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, RecoverComponent],
   imports: [
@@ -18,6 +20,7 @@ import { RecoverComponent } from './recover/recover.component';
     FormsModule,
     NgxMaskModule.forRoot(),
     NgbDatepickerModule,
+    NgxPhoneMaskBrModule,
   ],
   providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })

@@ -14,6 +14,12 @@
   </div> -->
 
   <div class="menu">
+    <button (click)="router.navigate(['/panel/profile'])" class="menu-item" [ngClass]="{ 'active': active === 'profile' }">
+      <i class="fas fa-address-card fa-2x icon"></i>
+      <span>
+        Meu perfil
+      </span>
+    </button>
     <button (click)="router.navigate(['/panel/trips'])" class="menu-item" [ngClass]="{ 'active': active === 'trips' }">
       <i class="fas fa-plane fa-2x icon"></i>
       <span>

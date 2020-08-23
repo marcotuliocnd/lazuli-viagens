@@ -16,6 +16,7 @@ export interface Data {
   user_id: any;
   createdAt: Date;
   updatedAt: Date;
+  more: string;
   __v: number;
   id: string;
 }
