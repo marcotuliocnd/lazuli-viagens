@@ -205,12 +205,12 @@ export default {
 
         const transport = nodemailer.createTransport(
           {
-            host: 'mail.lazuliviagens.com.br',
+            host: 'br614.hostgator.com.br',
             port: 465,
             secure: true,
             auth: {
               user: 'naoresponder@lazuliviagens.com.br',
-              pass: 'acessol4Zul1'
+              pass: 'teste123teste123#'
             },
           },
         );
