@@ -1,8 +1,10 @@
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as moment from 'moment';
+import { ContactService } from '../services/contact.service';
 
 @Component({
   selector: 'app-landing',
@@ -12,7 +14,7 @@ import * as moment from 'moment';
 export class LandingComponent implements OnInit {
   contactForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, public router: Router) {
+  constructor(private formBuilder: FormBuilder, public router: Router, private contact: ContactService, private toastr: ToastrService) {
     this.contactForm = this.formBuilder.group({
       name: '',
       email: '',
@@ -42,6 +44,13 @@ export class LandingComponent implements OnInit {
   }
 
   sendForm() {
+    this.contact.send(this.contactForm.value).subscribe(
+      (res) => {
+        this.toastr.success('E-mail enviado com sucesso');
+      }, (err) => {
+        this.toastr.error('Ocorreu um erro ao enviar o e-mail');
+      }
+    );
     console.log(this.contactForm.value);
   }
 
