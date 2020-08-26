@@ -82,7 +82,7 @@ export class UsersComponent implements OnInit {
         rg: user.rg || '',
         cellphone: user.cellphone,
         phone: user.phone || '',
-        birthdate_at: moment(user.birthdate_at).toDate(),
+        birthdate_at: moment(user.birthdate_at).startOf('day').format('YYYY-MM-DD'),
         passport_number: user.passport_number || '',
       });
 

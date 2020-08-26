@@ -62,8 +62,11 @@
         <div class="form-group col-lg-12">
           <label for="birthdate_at">Data de nascimento*:</label>
           <div class="input-group">
-            <input formControlName="birthdate_at" class="form-control" id="birthdate_at" placeholder="yyyy-mm-dd" type="text" ngbDatepicker #birthdateAt="ngbDatepicker"/>
-            <div class="calendar-button" (click)="birthdateAt.toggle()"><i class="fas fa-calendar-alt"></i></div>
+            <input
+              class="form-control"
+              type="date"
+              formControlName="birthdate_at"
+            />
           </div>
         </div>
       </div>

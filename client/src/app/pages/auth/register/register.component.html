@@ -8,8 +8,7 @@
         <input formControlName="email" type="email" name="email" id="email" placeholder="E-MAIL" />
         <input formControlName="password" type="password" name="password" id="password" placeholder="SENHA" />
         <div class="input-group">
-          <input formControlName="birthdate_at" class="form-control" id="birthdate_at" placeholder="Data de nascimento" type="text" ngbDatepicker #birthdate_at="ngbDatepicker"/>
-          <div class="calendar-button" (click)="birthdate_at.toggle()"><i class="fas fa-calendar-alt"></i></div>
+          <input class="form-control" type="date" formControlName="birthdate_at">
         </div>
         <input mask="000.000.000-00" formControlName="cpf" type="text" name="cpf" id="cpf" placeholder="CPF" />
         <input formControlName="rg" type="text" name="rg" id="rg" placeholder="RG" />

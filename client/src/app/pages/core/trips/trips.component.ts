@@ -78,9 +78,9 @@ export class TripsComponent implements OnInit {
         id: trip._id,
         from: trip.from,
         to: trip.to,
-        started_at: new Date(trip.started_at),
-        finished_at: new Date(trip.finished_at),
-        payment_at: new Date(trip.payment_at),
+        started_at: moment(trip.started_at).startOf('day').format('YYYY-MM-DD'),
+        finished_at: moment(trip.finished_at).startOf('day').format('YYYY-MM-DD'),
+        payment_at: moment(trip.payment_at).startOf('day').format('YYYY-MM-DD'),
         payment_method: trip.payment_method,
         value: trip.value,
         cpf: trip.user_id.cpf,
@@ -139,4 +139,5 @@ export class TripsComponent implements OnInit {
       }
     );
   }
+
 }

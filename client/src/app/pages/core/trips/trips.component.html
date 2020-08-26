@@ -1,7 +1,14 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{ edit ? 'Editar' : 'Nova' }} viagem</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+    <h4 class="modal-title" id="modal-basic-title">
+      {{ edit ? "Editar" : "Nova" }} viagem
+    </h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.close()"
+    >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -11,13 +18,25 @@
         <div class="form-group col-lg-6">
           <label for="from">Dê:</label>
           <div class="input-group">
-            <input [attr.disabled]="user?.role?.slug !== 'admin' ? true : null" formControlName="from" id="from" class="form-control" placeholder="Ex.: São Paulo"  />
+            <input
+              [attr.disabled]="user?.role?.slug !== 'admin' ? true : null"
+              formControlName="from"
+              id="from"
+              class="form-control"
+              placeholder="Ex.: São Paulo"
+            />
           </div>
         </div>
         <div class="form-group col-lg-6">
           <label for="to">Para:</label>
           <div class="input-group">
-            <input [attr.disabled]="user?.role?.slug !== 'admin' ? true : null" formControlName="to" id="to" class="form-control" placeholder="Ex.: São Paulo"  />
+            <input
+              [attr.disabled]="user?.role?.slug !== 'admin' ? true : null"
+              formControlName="to"
+              id="to"
+              class="form-control"
+              placeholder="Ex.: São Paulo"
+            />
           </div>
         </div>
       </div>
@@ -26,15 +45,23 @@
         <div class="form-group col-lg-6">
           <label for="started_at">Saída:</label>
           <div class="input-group">
-            <input [disabled]="user?.role?.slug !== 'admin'" formControlName="started_at" class="form-control" id="started_at" placeholder="dd/mm/yyyy" type="text" ngbDatepicker #startedAt="ngbDatepicker"/>
-            <div [ngClass]="{ 'disabled': user?.role?.slug !== 'admin'}" class="calendar-button" (click)="user?.role?.slug === 'admin' ? startedAt.toggle() : null"><i class="fas fa-calendar-alt"></i></div>
+            <input
+              [attr.disabled]="user?.role?.slug !== 'admin' ? true : null"
+              class="form-control"
+              type="date"
+              formControlName="started_at"
+            />
           </div>
         </div>
         <div class="form-group col-lg-6">
           <label for="finished_at">Volta:</label>
           <div class="input-group">
-            <input [disabled]="user?.role?.slug !== 'admin'" formControlName="finished_at" class="form-control" id="finished_at" placeholder="dd/mm/yyyy" type="text" ngbDatepicker #finishedAt="ngbDatepicker"/>
-            <div [ngClass]="{ 'disabled': user?.role?.slug !== 'admin'}" class="calendar-button" (click)="user?.role?.slug === 'admin' ? finishedAt.toggle() : null"><i class="fas fa-calendar-alt"></i></div>
+            <input
+              [attr.disabled]="user?.role?.slug !== 'admin' ? true : null"
+              class="form-control"
+              type="date"
+              formControlName="finished_at"
+            />
           </div>
         </div>
       </div>
@@ -43,8 +70,12 @@
         <div class="form-group col-lg-12">
           <label for="payment_at">Data do pagamento:</label>
           <div class="input-group">
-            <input [disabled]="user?.role?.slug !== 'admin'" formControlName="payment_at" class="form-control" id="payment_at" placeholder="dd/mm/yyyy" type="text" ngbDatepicker #paymentAt="ngbDatepicker"/>
-            <div [ngClass]="{ 'disabled': user?.role?.slug !== 'admin'}" class="calendar-button" (click)="user?.role?.slug === 'admin' ? paymentAt.toggle() : null"><i class="fas fa-calendar-alt"></i></div>
+            <input
+              [attr.disabled]="user?.role?.slug !== 'admin' ? true : null"
+              class="form-control"
+              type="date"
+              formControlName="payment_at"
+            />
           </div>
         </div>
       </div>
@@ -53,7 +84,13 @@
         <div class="form-group col-lg-12">
           <label for="payment_method">Metódo do pagamento:</label>
           <div class="input-group">
-            <input [attr.disabled]="user?.role?.slug !== 'admin' ? true : null" formControlName="payment_method" id="payment_method" class="form-control" placeholder="Ex.: Cartão"  />
+            <input
+              [attr.disabled]="user?.role?.slug !== 'admin' ? true : null"
+              formControlName="payment_method"
+              id="payment_method"
+              class="form-control"
+              placeholder="Ex.: Cartão"
+            />
           </div>
         </div>
       </div>
@@ -63,7 +100,19 @@
           <label for="value">Valor:</label>
           <div class="input-group">
             <span class="input-group-addon">R$</span>
-            <input [attr.disabled]="user?.role?.slug !== 'admin' ? true : null" formControlName="value" type="number" class="form-control" value="1000" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
+            <input
+              [attr.disabled]="user?.role?.slug !== 'admin' ? true : null"
+              formControlName="value"
+              type="number"
+              class="form-control"
+              value="1000"
+              min="0"
+              step="0.01"
+              data-number-to-fixed="2"
+              data-number-stepfactor="100"
+              class="form-control currency"
+              id="c2"
+            />
           </div>
         </div>
       </div>
@@ -72,7 +121,14 @@
         <div class="form-group col-lg-12">
           <label for="cpf">CPF do Usuário:</label>
           <div class="input-group">
-            <input [attr.disabled]="user?.role?.slug !== 'admin' ? true : null" mask="000.000.000-00" formControlName="cpf" id="cpf" class="form-control" placeholder="000.000.000-00"  />
+            <input
+              [attr.disabled]="user?.role?.slug !== 'admin' ? true : null"
+              mask="000.000.000-00"
+              formControlName="cpf"
+              id="cpf"
+              class="form-control"
+              placeholder="000.000.000-00"
+            />
           </div>
         </div>
       </div>
@@ -81,14 +137,26 @@
         <div class="form-group col-lg-12">
           <label for="cpf">Mais informações:</label>
           <div class="input-group">
-            <textarea [attr.disabled]="user?.role?.slug !== 'admin' ? true : null" formControlName="more" id="more" class="form-control"></textarea>
+            <textarea
+              [attr.disabled]="user?.role?.slug !== 'admin' ? true : null"
+              formControlName="more"
+              id="more"
+              class="form-control"
+            ></textarea>
           </div>
         </div>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button *ngIf="user?.role?.slug === 'admin'" (click)="save(edit ? 'save' : 'create')" type="button" class="btn btn-outline-dark">{{ loading ? 'Enviando...' : edit ? 'Salvar' : 'Criar' }}</button>
+    <button
+      *ngIf="user?.role?.slug === 'admin'"
+      (click)="save(edit ? 'save' : 'create')"
+      type="button"
+      class="btn btn-outline-dark"
+    >
+      {{ loading ? "Enviando..." : edit ? "Salvar" : "Criar" }}
+    </button>
   </div>
 </ng-template>
 
@@ -102,14 +170,24 @@
         <p>Listagem de todas suas viagens</p>
       </div>
 
-      <button (click)="openModal(content, 'create')" class="header-right" *ngIf="user.role.slug === 'admin'">
+      <button
+        (click)="openModal(content, 'create')"
+        class="header-right"
+        *ngIf="user.role.slug === 'admin'"
+      >
         <i class="fas fa-plus"></i>
         <span>Nova viagem</span>
       </button>
     </div>
 
     <div class="list">
-      <div *ngFor="let trip of trips" (click)="user?.role?.slug === 'admin' ? openModal(content, 'edit', trip) : null" class="list-item">
+      <div
+        *ngFor="let trip of trips"
+        (click)="
+          user?.role?.slug === 'admin' ? openModal(content, 'edit', trip) : null
+        "
+        class="list-item"
+      >
         <div class="list-left">
           <div class="list--Wrapper">
             <i class="fas fa-map-marker-alt"></i>
@@ -121,11 +199,11 @@
           </div>
           <div class="list--Wrapper">
             <i class="fas fa-arrow-right"></i>
-            {{ getDate(trip.started_at)}}
+            {{ getDate(trip.started_at) }}
           </div>
           <div class="list--Wrapper">
             <i class="fas fa-arrow-left"></i>
-            {{ getDate(trip.finished_at)}}
+            {{ getDate(trip.finished_at) }}
           </div>
         </div>
 
@@ -134,15 +212,21 @@
         </div>
 
         <div class="list-right">
-          <img *ngIf="user.role.slug === 'admin'" [src]="trip.user_id.avatar_url" onerror="event.target.src = '../../../../assets/images/avatar.png'" alt="">
+          <img
+            *ngIf="user.role.slug === 'admin'"
+            [src]="trip.user_id.avatar_url"
+            onerror="event.target.src = '../../../../assets/images/avatar.png'"
+            alt=""
+          />
           <h3>{{ trip.payment_method }}</h3>
           <h3>R$ {{ trip.value }}</h3>
           <h3>{{ getDate(trip.payment_at) }}</h3>
         </div>
       </div>
 
-      <a *ngIf="!disablePaginate" class="paginate-text" (click)="paginate()">{{ paginating ? '...' : 'Carregar mais...' }}</a>
+      <a *ngIf="!disablePaginate" class="paginate-text" (click)="paginate()">{{
+        paginating ? "..." : "Carregar mais..."
+      }}</a>
     </div>
   </div>
 </div>
-

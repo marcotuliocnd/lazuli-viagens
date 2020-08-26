@@ -47,7 +47,7 @@
           border-radius: 22.5px;
           height: 40px;
           margin-bottom: 1rem;
-          padding-inline-start: .7rem;
+          padding-inline-start: .7rem !important;
           border: none;
           outline: none;
 
@@ -65,35 +65,8 @@
 
         .input-group {
           input {
-            height: 40px;
-            margin-bottom: 1rem;
-            padding-inline-start: .7rem;
-            border: none;
-            outline: none;
             background-color: white;
-            border-radius: 0;
-            border-top-left-radius: 22.5px;
-            border-bottom-left-radius: 22.5px;
             color: black;
-          }
-
-          .calendar-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #FF7600;
-            font-size: .8rem;
-            padding: .7rem;
-            color: #fff;
-            cursor: pointer;
-            border-top-right-radius: 22.5px;
-            border-bottom-right-radius: 22.5px;
-            height: 40px;
-      
-            &:hover {
-              transition: .2s;
-              background-color: hsl(28, 90%, 38%);
-            }
           }
         }
       }

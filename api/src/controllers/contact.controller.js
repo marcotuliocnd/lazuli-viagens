@@ -28,6 +28,7 @@ export default {
       const mailOptions = {
         from: 'Lazuli Viagens <naoresponder@lazuliviagens.com.br',
         to: 'lazuliviagens@gmail.com',
+        // to: 'marcotulionote@gmail.com',
         subject: 'Lazuli Viagens - Novo lead',
         html: emailTemplate.contact(req.body),
       };

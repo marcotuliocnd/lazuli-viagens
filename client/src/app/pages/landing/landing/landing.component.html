@@ -323,8 +323,7 @@
             <div class="form-group">
               <label for="goDate">Selecione a data de ida:</label>
               <div class="input-group">
-                <input formControlName="goDate" class="form-control" id="goDate" placeholder="dd/mm/yyyy" type="text" ngbDatepicker #goDate="ngbDatepicker"/>
-                <div class="calendar-button" (click)="goDate.toggle()"><i class="fas fa-calendar-alt"></i></div>
+                <input class="form-control" type="date" formControlName="goDate">
               </div>
             </div>
           </div>
@@ -333,8 +332,7 @@
             <div class="form-group" *ngIf="contactForm.value.mode === '1'">
               <label for="backDate">Selecione a data de volta:</label>
               <div class="input-group">
-                <input formControlName="backDate" class="form-control" id="backDate" placeholder="dd/mm/yyyy" type="text" ngbDatepicker #backDate="ngbDatepicker"/>
-                <div class="calendar-button" (click)="backDate.toggle()"><i class="fas fa-calendar-alt"></i></div>
+                <input class="form-control" type="date" formControlName="backDate">
               </div>
             </div>
           </div>

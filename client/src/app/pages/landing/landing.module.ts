@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './landing/landing.component';
-import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [LandingComponent],
@@ -13,6 +13,7 @@ import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
     LandingRoutingModule,
     NgbDatepickerModule,
     ReactiveFormsModule,
-  ]
+  ],
+  providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 export class LandingModule { }

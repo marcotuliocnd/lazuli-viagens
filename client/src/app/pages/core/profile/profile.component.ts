@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { IUser } from '../../../interfaces/User';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-profile',
@@ -28,7 +29,7 @@ export class ProfileComponent implements OnInit {
       rg: this.user.rg,
       cellphone: this.user.cellphone,
       phone: this.user.phone,
-      birthdate_at: new Date(this.user.birthdate_at),
+      birthdate_at: moment(this.user.birthdate_at).startOf('day').format('YYYY-MM-DD'),
       passport_number: this.user.passport_number,
     });
 
