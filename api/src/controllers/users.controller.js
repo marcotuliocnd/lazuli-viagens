@@ -229,14 +229,12 @@ export default {
 
       const transport = nodemailer.createTransport(
         {
-          host: 'smtp.gmail.com',
+          host: 'br614.hostgator.com.br',
           port: 465,
           secure: true,
           auth: {
-            type: 'OAuth2',
-            user: 'naoresponder@artmakerdesign.com.br',
-            serviceClient: mailConfig.client_id,
-            privateKey: mailConfig.private_key,
+            user: 'naoresponder@lazuliviagens.com.br',
+            pass: 'teste123teste123#'
           },
         },
       );
