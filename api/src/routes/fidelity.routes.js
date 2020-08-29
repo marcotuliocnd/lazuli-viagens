@@ -8,4 +8,6 @@ const fidelityController = new FidelityController();
 
 routes.post('/', adminMiddleware, fidelityController.store);
 
+routes.get('/', adminMiddleware, fidelityController.list);
+
 export default routes;

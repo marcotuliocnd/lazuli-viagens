@@ -1,3 +1,4 @@
+import { FidelityService, Data as IFidelity } from './../services/fidelity.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -5,7 +6,7 @@ import * as moment from 'moment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from './../../../services/auth.service';
-import { IUser } from './../../../interfaces/User';
+import { IUser, Fidelity } from './../../../interfaces/User';
 
 import { Data, UsersService } from '../services/users.service';
 
@@ -21,6 +22,7 @@ export class UsersComponent implements OnInit {
   loading: boolean;
   formGroup: FormGroup;
   message = '';
+  fidelities: IFidelity[] = [];
 
   page = 1;
   paginating: boolean = false;
@@ -32,6 +34,7 @@ export class UsersComponent implements OnInit {
     private modalService: NgbModal,
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
+    private fidelityService: FidelityService,
   ) {
     this.user = this.authService.getUser();
     this.formGroup = this.formBuilder.group({
@@ -44,10 +47,16 @@ export class UsersComponent implements OnInit {
       phone: '',
       birthdate_at: '',
       passport_number: '',
+      fidelity: '',
     });
   }
 
   ngOnInit(): void {
+    this.fidelityService.list().subscribe(
+      (res) => {
+        this.fidelities = res.data;
+      },
+    ) 
     this.usersService.list().subscribe(
       (res) => {
         this.users = res.data;
@@ -84,6 +93,7 @@ export class UsersComponent implements OnInit {
         phone: user.phone || '',
         birthdate_at: moment(user.birthdate_at).startOf('day').format('YYYY-MM-DD'),
         passport_number: user.passport_number || '',
+        fidelity: user?.fidelity?._id || null,
       });
 
       this.edit = true;

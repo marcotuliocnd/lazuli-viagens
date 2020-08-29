@@ -19,4 +19,19 @@ export default class RoleController {
         .json({ success: false, message: 'Internal Server Error' });
     }
   }
+
+  async list(req, res) {
+    try {
+      const fidelity = await Fidelity.find();
+
+      return res
+        .status(200)
+        .json({ success: true, data: fidelity });
+    } catch (err) {
+      console.error(err.message);
+      return res
+        .status(500)
+        .json({ success: false, message: 'Internal Server Error' });
+    }
+  }
 }

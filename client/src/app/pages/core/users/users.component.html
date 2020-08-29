@@ -73,6 +73,21 @@
 
       <div class="row">
         <div class="form-group col-lg-12">
+          <label for="birthdate_at">Plano de fidelidade*:</label>
+          <div class="input-group">
+            <select
+              class="form-control"
+              formControlName="fidelity"
+            >
+              <option [value]="null">Nenhum</option>
+              <option *ngFor="let fidelity of fidelities" [value]="fidelity._id">{{ fidelity.name }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
           <label for="passport_number">Número de Passaporte:</label>
           <div class="input-group">
             <input formControlName="passport_number" id="passport_number" class="form-control" placeholder="00000000000000"  />
@@ -111,7 +126,7 @@
 
         <div class="list-right">
           <h3>{{ userEach.name }}</h3>
-          <h3>{{ userEach?.fidelity || 'Nenhum' }}</h3>
+          <h3>{{ userEach?.fidelity?.name || 'Nenhum' }}</h3>
         </div>
       </div>
     </div>
