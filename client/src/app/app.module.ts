@@ -12,6 +12,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPhoneMaskBrModule } from 'ngx-phone-mask-br';
+import { NgxCpfCnpjModule } from  'ngx-cpf-cnpj';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -30,6 +31,7 @@ const maskConfig: Partial<IConfig> = {
     NgxMaskModule.forRoot(maskConfig),
     ToastrModule.forRoot(),
     NgxPhoneMaskBrModule,
+    NgxCpfCnpjModule,
   ],
   providers: [
     {

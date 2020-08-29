@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { RecoverComponent } from './recover/recover.component';
 
 import { NgxPhoneMaskBrModule } from 'ngx-phone-mask-br';
+import { NgxCpfCnpjModule } from  'ngx-cpf-cnpj';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, RecoverComponent],
@@ -21,6 +22,7 @@ import { NgxPhoneMaskBrModule } from 'ngx-phone-mask-br';
     NgxMaskModule.forRoot(),
     NgbDatepickerModule,
     NgxPhoneMaskBrModule,
+    NgxCpfCnpjModule,
   ],
   providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })

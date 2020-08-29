@@ -10,7 +10,7 @@
         <div class="input-group">
           <input class="form-control" type="date" formControlName="birthdate_at">
         </div>
-        <input mask="000.000.000-00" formControlName="cpf" type="text" name="cpf" id="cpf" placeholder="CPF" />
+        <input formControlName="cpf" type="text" name="cpf" id="cpf" placeholder="CPF" />
         <input formControlName="rg" type="text" name="rg" id="rg" placeholder="RG" />
         <input prefix="+55" mask=" (00) 0000-00000" formControlName="cellphone" type="text" name="cellphone" id="cellphone" placeholder="CELULAR" />
         <input type="submit" [value]="!loading ? 'REGISTRAR' : 'REGISTRANDO...'">
