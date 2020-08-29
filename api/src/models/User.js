@@ -69,6 +69,10 @@ const User = new Schema(
       ref: 'roles',
       required: true,
     },
+    value: {
+      type: String,
+      required: false,
+    }
   },
   {
     timestamps: true,
