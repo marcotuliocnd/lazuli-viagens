@@ -2,6 +2,7 @@ import { validationResult } from 'express-validator';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
+import moment from 'moment';
 
 import mailConfig from '../config/mail.config.json';
 import emailTemplate from '../config/email.templates';
@@ -63,6 +64,7 @@ export default {
         ...req.body,
         password: passCrypted,
         role: role._id,
+        birthday: moment(req.body.birthdate_at).format('DD/MM'),
       });
 
       await user.save();

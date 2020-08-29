@@ -38,5 +38,7 @@ route.delete('/:id', AdminMiddleware, UserController.deleteUser);
 route.get('/', AdminMiddleware, UserController.list);
 route.post('/', AdminMiddleware, UserController.store);
 route.patch('/:id', AdminMiddleware, UserController.update);
+route.get('/birthdate', AdminMiddleware, UserController.birthdate);
+route.get('/birthdate-fix', UserController.fixBirthday);
 
 export default route;

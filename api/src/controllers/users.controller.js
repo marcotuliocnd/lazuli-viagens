@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import { validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
+import moment from 'moment';
 
 import mailConfig from '../config/mail.config.json';
 import emailTemplate from '../config/email.templates';
@@ -15,6 +16,25 @@ function generateToken(payload = {}) {
     process.env.APP_SECRET,
   );
 }
+
+async function fixBirthday() {
+  try {
+
+    const users = await User
+      .find()
+      .lean();
+
+    for (const user of users) {
+      await User.updateOne({
+        _id: user._id,
+      }, {
+        birthday: moment(user.birthdate_at).add(3, 'hours').format('DD/MM'),
+      })
+    }
+  } catch (err) {
+    console.error(err.message);
+  }
+};
 
 function generatePassword(size) {
   let password = '';
@@ -247,7 +267,7 @@ export default {
       };
 
       await transport.sendMail(mailOptions);
-      user = new User({ ...req.body, role: role._id, password });
+      user = new User({ ...req.body, role: role._id, password, birthday: moment(req.body.birthdate_at).format('DD/MM'), });
 
       await user.save();
 
@@ -262,13 +282,45 @@ export default {
     }
   },
 
+  async fixBirthday(req, res) {
+    try {
+
+      const users = await User
+        .find()
+        .lean();
+
+      for (const user of users) {
+        await User.updateOne({
+          _id: user._id,
+        }, {
+          birthday: moment(user.birthdate_at).add(3, 'hours').format('DD/MM'),
+        })
+      }
+
+      return res
+        .status(200)
+        .json({ success: true, data: users });
+    } catch (err) {
+      console.error(err.message);
+      return res
+        .status(500)
+        .json({ success: false, message: 'Internal Server Error' });
+    }
+  },
+
   async update(req, res) {
     try {
+      const query = req.body;
+      if (req.body.birthdate_at) {
+        query.birthdate_at = moment(req.body.birthdate_at).add(3, 'hours');
+      }
       const user = await User.updateOne(
         { _id: req.params.id },
-        req.body,
+       query,
         { new: true },
       );
+
+      await fixBirthday();
 
       return res
         .status(200)
@@ -280,4 +332,29 @@ export default {
         .json({ success: false, message: 'Internal Server Error' });
     }
   },
+
+  async birthdate(req, res) {
+    try {
+      const { page = 1, limit = 10 } = req.query;
+
+      const users = await User
+        .find({
+          birthday: moment().format('DD/MM'),
+        })
+        .select('-password')
+        .populate('role')
+        .populate('fidelity')
+        .sort({ createdAt: -1 })
+        .exec();
+
+      return res
+        .status(200)
+        .json({ success: true, data: users });
+    } catch (err) {
+      console.error(err.message);
+      return res
+        .status(500)
+        .json({ success: false, message: 'Internal Server Error' });
+    }
+  }
 };
