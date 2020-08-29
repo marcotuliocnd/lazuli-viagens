@@ -137,6 +137,13 @@
         <span>Novo usuário</span>
       </button>
     </div>
+    <div class="header-left">
+      <h3>Aniversariantes do dia:</h3>
+      <ul *ngIf="aniversariantes.length">
+        <li *ngFor="let aniversariante of aniversariantes">{{ aniversariante.name }}</li>
+      </ul>
+      <strong *ngIf="!aniversariantes.length">Não possuem aniversariantes hoje</strong>
+    </div>
 
     <div class="list">
       <div *ngFor="let userEach of users" (click)="openModal(content, 'edit', userEach)" class="list-item">

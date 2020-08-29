@@ -23,6 +23,7 @@ export class UsersComponent implements OnInit {
   formGroup: FormGroup;
   message = '';
   fidelities: IFidelity[] = [];
+  aniversariantes: Data[] = [];
 
   page = 1;
   paginating: boolean = false;
@@ -61,6 +62,11 @@ export class UsersComponent implements OnInit {
     this.usersService.list().subscribe(
       (res) => {
         this.users = res.data;
+      },
+    );
+    this.usersService.listBirthday().subscribe(
+      (res) => {
+        this.aniversariantes = res.data;
       },
     );
   }

@@ -46,6 +46,10 @@ export class UsersService {
     return this.http.get(`${environment.apiUrl}/users?page=${page}`);
   }
 
+  listBirthday(): Observable<IResponse> {
+    return this.http.get(`${environment.apiUrl}/users/birthdate`);
+  }
+
   store(data: object): Observable<IResponse> {
     return this.http.post(`${environment.apiUrl}/users`, data);
   }
