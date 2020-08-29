@@ -1,48 +1,59 @@
 <div id="sidebar">
   <div class="header">
-    <img [src]="user?.avatar_url" onerror="event.target.src = '../../../../../assets/images/avatar.png'" alt="">
+    <img
+      [src]="user?.avatar_url"
+      onerror="event.target.src = '../../../../../assets/images/avatar.png'"
+      alt=""
+    />
 
     <div (click)="router.navigate(['/panel/profile'])" class="user--Info">
       <h1>{{ user.name }}</h1>
-      <p>{{ user?.fidelity || 'Nenhum plano' }}</p>
+      <p>{{ user?.fidelity || "Nenhum plano" }}</p>
     </div>
   </div>
 
-  <!-- <div class="status">
-    <p>Status</p>
-    <h1>Atrasado</h1>
-  </div> -->
-
   <div class="menu">
-    <button (click)="router.navigate(['/panel/profile'])" class="menu-item" [ngClass]="{ 'active': active === 'profile' }">
+    <button
+      (click)="router.navigate(['/panel/profile'])"
+      class="menu-item"
+      [ngClass]="{ active: active === 'profile' }"
+    >
       <i class="fas fa-address-card fa-2x icon"></i>
-      <span>
-        Meu perfil
-      </span>
+      <span> Meu perfil </span>
     </button>
-    <button (click)="router.navigate(['/panel/trips'])" class="menu-item" [ngClass]="{ 'active': active === 'trips' }">
+    <button
+      (click)="router.navigate(['/panel/trips'])"
+      class="menu-item"
+      [ngClass]="{ active: active === 'trips' }"
+    >
       <i class="fas fa-plane fa-2x icon"></i>
-      <span>
-        Viagens
-      </span>
+      <span> Viagens </span>
     </button>
-    <button (click)="router.navigate(['/panel/fidelity'])" *ngIf="user.role.slug !== 'admin'" class="menu-item" [ngClass]="{ 'active': active === 'fidelity' }">
+    <button
+      (click)="router.navigate(['/panel/fidelity'])"
+      *ngIf="user.role.slug !== 'admin'"
+      class="menu-item"
+      [ngClass]="{ active: active === 'fidelity' }"
+    >
       <i class="fas fa-heart fa-2x icon"></i>
-      <span>
-        Viage+
-      </span>
+      <span> Viage+ </span>
     </button>
-    <button (click)="router.navigate(['/panel/users'])" *ngIf="user.role.slug === 'admin'" class="menu-item" [ngClass]="{ 'active': active === 'users' }">
+    <button
+      (click)="router.navigate(['/panel/users'])"
+      *ngIf="user.role.slug === 'admin'"
+      class="menu-item"
+      [ngClass]="{ active: active === 'users' }"
+    >
       <i class="fas fa-user fa-2x icon"></i>
-      <span>
-        Usuários
-      </span>
+      <span> Usuários </span>
     </button>
-    <button (click)="logout()" class="menu-item" [ngClass]="{ 'active': active === 'logout' }">
+    <button
+      (click)="logout()"
+      class="menu-item"
+      [ngClass]="{ active: active === 'logout' }"
+    >
       <i class="fas fa-sign-out-alt fa-2x icon"></i>
-      <span>
-        Sair
-      </span>
+      <span> Sair </span>
     </button>
   </div>
 </div>
