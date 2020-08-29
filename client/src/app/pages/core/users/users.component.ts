@@ -48,6 +48,7 @@ export class UsersComponent implements OnInit {
       birthdate_at: '',
       passport_number: '',
       fidelity: '',
+      value: '',
     });
   }
 
@@ -80,6 +81,8 @@ export class UsersComponent implements OnInit {
         phone: '',
         birthdate_at: '',
         passport_number: '',
+        fidelity: null,
+        value: '',
       });
       this.edit = false;
     } else if (mode === 'edit' && user) {
@@ -94,6 +97,7 @@ export class UsersComponent implements OnInit {
         birthdate_at: moment(user.birthdate_at).startOf('day').format('YYYY-MM-DD'),
         passport_number: user.passport_number || '',
         fidelity: user?.fidelity?._id || null,
+        value: user?.value || '',
       });
 
       this.edit = true;
