@@ -317,7 +317,7 @@
             <div class="form-group" *ngIf="contactForm.value.mode === '1'">
               <label for="backDate">Selecione a data de volta:</label>
               <div class="input-group">
-                <input class="form-control" type="date" formControlName="backDate">
+                <input class="form-control" type="date" [min]="contactForm.value.goDate" formControlName="backDate">
               </div>
             </div>
           </div>

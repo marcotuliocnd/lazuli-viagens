@@ -74,6 +74,11 @@
       margin: 1.5rem 0;
       cursor: pointer;
 
+      @media all and (max-width: 1024px) {
+        display: flex;
+        flex-direction: column;
+      }
+
       &:hover {
         transition: .2s;
         background-color: #eee;

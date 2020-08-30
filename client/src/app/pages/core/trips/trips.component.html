@@ -58,6 +58,7 @@
           <div class="input-group">
             <input
               [attr.disabled]="user?.role?.slug !== 'admin' ? true : null"
+              [min]="formGroup.value.started_at"
               class="form-control"
               type="date"
               formControlName="finished_at"
