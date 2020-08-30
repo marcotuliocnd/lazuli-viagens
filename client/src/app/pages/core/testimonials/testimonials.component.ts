@@ -61,6 +61,7 @@ export class TestimonialsComponent implements OnInit {
 
     if (mode === 'create') {
       this.formGroup.setValue({
+        id: '',
         title: '',
         description: '',
       });
