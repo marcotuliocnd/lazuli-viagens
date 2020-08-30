@@ -1,3 +1,4 @@
+import { TestimonialService, Data } from './../../core/services/testimonials.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -13,8 +14,9 @@ import { ContactService } from '../services/contact.service';
 })
 export class LandingComponent implements OnInit {
   contactForm: FormGroup;
+  testmonials: Data[];
 
-  constructor(private formBuilder: FormBuilder, public router: Router, private contact: ContactService, private toastr: ToastrService) {
+  constructor(private formBuilder: FormBuilder, public router: Router, private contact: ContactService, private toastr: ToastrService, private testimonialService: TestimonialService) {
     this.contactForm = this.formBuilder.group({
       name: '',
       email: '',
@@ -33,6 +35,11 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.testimonialService.list().subscribe(
+      (res) => {
+        this.testmonials = [];
+      }
+    )
   }
 
   onDateSelect(event, mode: string) {

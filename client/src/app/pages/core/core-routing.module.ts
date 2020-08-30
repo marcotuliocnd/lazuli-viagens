@@ -1,3 +1,4 @@
+import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { FidelityComponent } from './fidelity/fidelity.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'fidelity',
     component: FidelityComponent,
+  },
+  {
+    path: 'testimonials',
+    component: TestimonialsComponent,
   },
 ];
 

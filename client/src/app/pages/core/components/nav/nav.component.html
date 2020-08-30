@@ -48,6 +48,15 @@
       <span> Usuários </span>
     </button>
     <button
+      (click)="router.navigate(['/panel/testimonials'])"
+      *ngIf="user.role.slug === 'admin'"
+      class="menu-item"
+      [ngClass]="{ active: active === 'testimonials' }"
+    >
+      <i class="fas fa-comment-alt fa-2x icon"></i>
+      <span> Depoimentos </span>
+    </button>
+    <button
       (click)="logout()"
       class="menu-item"
       [ngClass]="{ active: active === 'logout' }"

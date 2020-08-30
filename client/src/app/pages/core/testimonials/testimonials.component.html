@@ -1,0 +1,120 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      {{ edit ? "Editar" : "Novo" }} depoimento
+    </h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.close()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="container" [formGroup]="formGroup">
+      <div class="row">
+        <div class="form-group col-lg-12">
+          <label for="title">Foto:</label>
+          <div class="input-group">
+            <input type="file" class="form-control" accept="image/*" (change)="onPhotoUpload($event)" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+          <label for="title">Título:</label>
+          <div class="input-group">
+            <input
+              [attr.disabled]="user?.role?.slug !== 'admin' ? true : null"
+              formControlName="title"
+              id="title"
+              class="form-control"
+              placeholder="Ex.: Viagem para Porto de Galinhas"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+          <label for="description">Descrição:</label>
+          <div class="input-group">
+            <textarea
+              [attr.disabled]="user?.role?.slug !== 'admin' ? true : null"
+              formControlName="description"
+              id="description"
+              class="form-control"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      *ngIf="user?.role?.slug === 'admin' && edit"
+      (click)="delete()"
+      type="button"
+      class="btn btn-outline-danger"
+    >
+      {{ loading ? "Excluindo..." : "Excluir" }}
+    </button>
+    <button
+      *ngIf="user?.role?.slug === 'admin'"
+      (click)="save(edit ? 'save' : 'create')"
+      type="button"
+      class="btn btn-outline-dark"
+    >
+      {{ loading ? "Enviando..." : edit ? "Salvar" : "Criar" }}
+    </button>
+  </div>
+</ng-template>
+
+<div id="trips">
+  <app-nav active="testimonials"></app-nav>
+
+  <div id="content">
+    <div class="header">
+      <div class="header-left">
+        <h1>Depoimentos</h1>
+        <p>Escolha 10 depoimentos para aparecerem na sua página inicial</p>
+      </div>
+
+      <button
+        (click)="openModal(content, 'create')"
+        class="header-right"
+        *ngIf="user.role.slug === 'admin'"
+      >
+        <i class="fas fa-plus"></i>
+        <span>Novo depoimento</span>
+      </button>
+    </div>
+
+    <div class="list">
+      <div
+        *ngFor="let testimonial of testimonials"
+        (click)="
+          user?.role?.slug === 'admin' ? openModal(content, 'edit', testimonial) : null
+        "
+        class="list-item"
+      >
+        <div class="list-left">
+          <img
+            *ngIf="user.role.slug === 'admin'"
+            [src]="testimonial.image_url"
+            onerror="event.target.src = '../../../../assets/images/avatar.png'"
+            alt=""
+          />
+        </div>
+
+        <div class="list-right">
+          <h1>{{ testimonial.title }}</h1>
+          <p>{{ testimonial.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
