@@ -213,9 +213,16 @@ export default {
         .sort({ createdAt: -1 })
         .exec();
 
+      const nextPage = await User
+        .find()
+        .limit(limit * 1)
+        .skip((page*2 - 1) * limit)
+        .sort({ createdAt: -1 })
+        .count();
+
       return res
         .status(200)
-        .json({ success: true, data: users });
+        .json({ success: true, nextPage, data: users });
     } catch (err) {
       console.error(err.message);
       return res

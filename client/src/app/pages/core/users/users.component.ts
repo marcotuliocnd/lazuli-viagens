@@ -24,6 +24,7 @@ export class UsersComponent implements OnInit {
   message = '';
   fidelities: IFidelity[] = [];
   aniversariantes: Data[] = [];
+  nextPage: boolean;
 
   page = 1;
   paginating: boolean = false;
@@ -62,6 +63,7 @@ export class UsersComponent implements OnInit {
     this.usersService.list().subscribe(
       (res) => {
         this.users = res.data;
+        this.nextPage = res.nextPage !== 0;
       },
     );
     this.usersService.listBirthday().subscribe(

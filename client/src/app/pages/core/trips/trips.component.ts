@@ -19,6 +19,7 @@ export class TripsComponent implements OnInit {
   edit: boolean;
   loading: boolean;
   formGroup: FormGroup;
+  nextPage: boolean;
 
   page = 1;
   paginating: boolean = false;
@@ -50,6 +51,7 @@ export class TripsComponent implements OnInit {
     this.tripService.list().subscribe(
       (res) => {
         this.trips = res.data;
+        this.nextPage = res.nextPage !== 0;
       },
     );
   }

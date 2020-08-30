@@ -223,7 +223,7 @@
         </div>
       </div>
 
-      <a *ngIf="!disablePaginate" class="paginate-text" (click)="paginate()">{{
+      <a *ngIf="nextPage" class="paginate-text" (click)="paginate()">{{
         paginating ? "..." : "Carregar mais..."
       }}</a>
     </div>

@@ -24,6 +24,7 @@ export interface Data {
 export interface IResponse {
   success?: boolean;
   data?: Data[];
+  nextPage?: number;
 }
 
 @Injectable({

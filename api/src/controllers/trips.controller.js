@@ -60,9 +60,16 @@ export default {
         .populate('user_id')
         .exec();
 
+      const nextPage = await Trip
+        .find(query)
+        .limit(limit * 1)
+        .skip((page*2 - 1) * limit)
+        .sort({ createdAt: -1 })
+        .count();
+
       return res
         .status(200)
-        .json({ success: true, data: trips });
+        .json({ success: true, nextPage, data: trips });
     } catch (err) {
       console.error(err.message);
       return res
