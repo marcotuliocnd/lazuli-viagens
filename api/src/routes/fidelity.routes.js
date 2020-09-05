@@ -11,6 +11,8 @@ routes.post('/', adminMiddleware, fidelityController.store);
 
 routes.get('/', adminMiddleware, fidelityController.list);
 
+routes.get('/matching', fidelityController.matchingFidelity);
+
 schedule('50 6 * * *', async () => {
   await fidelityController.matchingFidelity(null, null, null, true);
 }, null, true, 'America/Sao_Paulo');

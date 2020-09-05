@@ -38,7 +38,9 @@ export default class RoleController {
 
   async matchingFidelity(req, res, next, matchByFn = false) {
     try {
-      const users = await Users.find();
+      const users = await Users.find({
+        $or: [{ fidelity: { $ne: null } }, { fidelity: { $exists: true } }],
+      });
 
       console.log(`> Processing ${users.length} users!`)
       
