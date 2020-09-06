@@ -128,6 +128,10 @@
   padding: 10% 10%;
   justify-content: space-between;
 
+  @media all and (max-width: 1024px) {
+    width: 1200px;
+  }
+
   h1 {
     font-size: 23px;
   }
@@ -141,5 +145,13 @@
       display: flex;
       justify-content: space-between;
     }
+  }
+}
+
+
+.fidelity--Info col-lg-12 {
+
+  video {
+    min-width: 700px !important;
   }
 }

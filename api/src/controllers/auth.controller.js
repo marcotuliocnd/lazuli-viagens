@@ -48,7 +48,7 @@ export default {
             errors: [
               {
                 field: 'email',
-                rule: 'exists',
+                rule: 'exists', 
                 message: 'Email já está sendo utilizado por outro usuário',
               },
             ],
@@ -134,6 +134,61 @@ export default {
 
       const match = await bcrypt.compare(req.body.password, user.password);
       if (!match) {
+        return res
+          .status(400)
+          .json({
+            success: false,
+            errors: [
+              {
+                field: '',
+                rule: 'invalid',
+                message: 'E-mail ou senha inválida',
+              },
+            ],
+          });
+      }
+
+      const role = await Role.findOne({ _id: user.role }).lean();
+
+      user._doc.role = role;
+
+      const fidelity = await Fidelity.findOne({ _id: user.fidelity }).lean();
+
+      user._doc.fidelity = fidelity;
+
+      delete user._doc.password;
+
+      const token = {
+        type: 'Bearer',
+        token: generateToken({
+          id: user._id,
+          email: user.email,
+          name: user.name,
+          fidelity: user.fidelity || null,
+          role: role.slug,
+        }),
+      };
+
+      return res
+        .status(200)
+        .json({
+          success: true,
+          user,
+          token,
+        });
+    } catch (err) {
+      console.error(err.message);
+      return res
+        .status(500)
+        .json('Internal Server Error');
+    }
+  },
+
+  async auth(req, res) {
+    try {
+      const user = await User.findOne({ _id: req.user.id   });
+
+      if (!user) {
         return res
           .status(400)
           .json({

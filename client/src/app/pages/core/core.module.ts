@@ -11,9 +11,10 @@ import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FidelityComponent } from './fidelity/fidelity.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
+import { StarsComponent } from './components/stars/stars.component';
 
 @NgModule({
-  declarations: [TripsComponent, NavComponent, UsersComponent, ProfileComponent, FidelityComponent, TestimonialsComponent],
+  declarations: [TripsComponent, NavComponent, UsersComponent, ProfileComponent, FidelityComponent, TestimonialsComponent, StarsComponent],
   imports: [
     CommonModule,
     CoreRoutingModule,

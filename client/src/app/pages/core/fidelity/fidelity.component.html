@@ -4,7 +4,7 @@
   <div id="content">
     <div class="header">
       <div class="header-left">
-        <h1>Viage +</h1>
+        <h1>Viaje +</h1>
         <p>Informações sobre seu plano de Viage +</p>
       </div>
     </div>
@@ -14,12 +14,7 @@
       <p>{{ user.fidelity.name }}</p>
 
       <div class="level-container">
-        <img src="../../../../assets/images/level-timeline.png" alt="">
-        <div class="level-label">
-          <p>{{ user.fidelity_level_last }}</p>
-          <p>{{ user.fidelity_level }}</p>
-          <p>{{ user.fidelity_level }}</p>
-        </div>
+        <app-stars [starNumbers]="user?.fidelity_level || '1'"></app-stars>
       </div>
 
       <div class="comprovante">

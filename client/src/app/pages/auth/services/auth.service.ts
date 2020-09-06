@@ -52,6 +52,10 @@ export class AuthService {
     return this.http.post(`${environment.apiUrl}/auth/login`, data);
   }
 
+  auth(): Observable<IAuthResponse> {
+    return this.http.get(`${environment.apiUrl}/auth/me`);
+  }
+
   register(data: object): Observable<IAuthResponse> {
     return this.http.post(`${environment.apiUrl}/auth/register`, data);
   }

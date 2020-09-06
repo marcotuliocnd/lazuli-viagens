@@ -154,6 +154,7 @@
         <div class="list-right">
           <h3>{{ userEach.name }}</h3>
           <h3>{{ userEach?.fidelity?.name || 'Nenhum' }}</h3>
+          <app-stars *ngIf="userEach?.fidelity" [starNumbers]="userEach?.fidelity_level || '1'"></app-stars>
         </div>
       </div>
     </div>

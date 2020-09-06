@@ -109,7 +109,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="!testmonials.length" class="carousel-item active" >
+        <div *ngIf="!testmonials?.length" class="carousel-item active" >
           <strong>Não possuem depoimentos a serem demonstrados!</strong>
         </div>
       </div>
@@ -293,39 +293,36 @@
 
         <div class="form-row">
 
-          <div class="form-group col-md-12">
-            <label for="inputState">Selecione</label>
-            <select id="inputState" class="form-control" placeholder="Escolha" formControlName="mode">
-              <option value="1">Ida e volta</option>
-              <option value="2">Somente ida</option>
-            </select>
+          <div class="form-group col-md-4 mode">
+            <input type="radio" name="mode" formControlName="mode" value="2">
+            <label for="inputState">Somente ida</label>
+
+            <input type="radio" name="mode" formControlName="mode" value="1">
+            <label for="inputState">Ida e volta</label>
           </div>
 
-        </div>
-
-        <div class="form-row">
-          <div class="row date-row" [ngClass]="contactForm.value.mode === '1' ? 'col-md-6' : 'col-md-12'" style="align-items: center;">
-            <div class="form-group">
-              <label for="goDate">Selecione a data de ida:</label>
-              <div class="input-group">
-                <input class="form-control" type="date" formControlName="goDate">
+          <div class="form-group col-md-8">
+            <div class="form-row">
+              <div class="row date-row" [ngClass]="contactForm.value.mode === '1' ? 'col-md-6' : 'col-md-12'" style="align-items: center;">
+                <div class="form-group">
+                  <label for="goDate">Selecione a data de ida:</label>
+                  <div class="input-group">
+                    <input class="form-control" type="date" formControlName="goDate">
+                  </div>
+                </div>
               </div>
+    
+              <div class="row col-md-6 date-row">
+                <div class="form-group" *ngIf="contactForm.value.mode === '1'">
+                  <label for="backDate">Selecione a data de volta:</label>
+                  <div class="input-group">
+                    <input class="form-control" type="date" [min]="contactForm.value.goDate" formControlName="backDate">
+                  </div>
+                </div>
+              </div>
+    
             </div>
           </div>
-
-          <div class="row col-md-6 date-row">
-            <div class="form-group" *ngIf="contactForm.value.mode === '1'">
-              <label for="backDate">Selecione a data de volta:</label>
-              <div class="input-group">
-                <input class="form-control" type="date" [min]="contactForm.value.goDate" formControlName="backDate">
-              </div>
-            </div>
-          </div>
-
-            <!-- <div class="form-group col-md-6" *ngIf="contactForm.value.mode === '1'" style="display: flex; flex-direction: column;">
-              <label for="inputIda">Selecione a data de ida</label>
-              <ngb-datepicker name="inputIda" style="background-color: white; width: 240px; align-self: center;" (dateSelect)="onDateSelect($event, 'go')"></ngb-datepicker>
-            </div> -->
 
         </div>
 
@@ -344,12 +341,14 @@
 
   <footer id="footer">
     <div class="footer-footer">
-      <div>
-        <p>&copy; Copyright 2020 Lazuliviagens</p>
-        <p>CNPJ 35.319.382/0001-03</p>
+      <div class="images">
+        <img class="cadastrur" src="../../../../assets/images/logoCadastur.png" />
       </div>
 
-      <p>Desenvolvido por <a href="https://instagram.com/artmakerdesign" target="_blank">artMaker Design</a></p>
+      <div>
+        <p>&copy; Copyright 2020 <br /> Lazuli Viagens LTDA</p>
+        <p>CNPJ 35.319.382/0001-03</p>
+      </div>
     </div>
   </footer>
 

@@ -9,6 +9,7 @@
     <div (click)="router.navigate(['/panel/profile'])" class="user--Info">
       <h1>{{ user.name }}</h1>
       <p>{{ user?.fidelity?.name || "Nenhum plano" }}</p>
+      <app-stars *ngIf="user?.fidelity" [starNumbers]="user?.fidelity_level || '1'"></app-stars>
     </div>
   </div>
 
@@ -36,7 +37,7 @@
       [ngClass]="{ active: active === 'fidelity' }"
     >
       <i class="fas fa-heart fa-2x icon"></i>
-      <span> Viage+ </span>
+      <span> Viaje+ </span>
     </button>
     <button
       (click)="router.navigate(['/panel/users'])"

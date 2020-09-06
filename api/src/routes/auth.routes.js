@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { check } from 'express-validator';
 
 import AuthController from '../controllers/auth.controller';
+import authMiddleware from '../middlewares/auth.middleware';
 
 const routes = Router();
 
@@ -19,6 +20,8 @@ routes.post('/login', [
   check('email').isEmail(),
   check('password').isLength({ min: 8 }),
 ], AuthController.login);
+
+routes.get('/me', authMiddleware, AuthController.auth);
 
 routes.post('/recover', [
   check('email').isEmail(),

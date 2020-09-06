@@ -142,6 +142,17 @@ nav {
   padding: 7% 15%;
   color: #fff;
 
+  .mode {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    label {
+      margin: 0 3rem 0 1rem;
+    }
+  }
+
   .form-date {
     display: flex !important;
     flex-direction: column !important;
@@ -221,9 +232,30 @@ nav {
     justify-content: space-between;
     width: 70%;
 
+    @media all and (max-width: 1024px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .images {
+
+        .cadastrur {
+          width: 200px !important;
+        }
+      }
+    }
+
     a {
       font-weight: 700;
       color: #000;
+    }
+
+    .images {
+      
+      .cadastrur {
+        width: 250px;
+        margin-bottom: 1rem;
+      }
     }
   }
 
