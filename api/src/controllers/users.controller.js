@@ -384,7 +384,7 @@ export default {
 
     const mailOptions = {
       from: 'Lazuli Viagens <naoresponder@lazuliviagens.com.br',
-      to: 'marcotuliocandeo@outlook.com',
+      to: 'lazuliviagens@gmail.com',
       subject: `Lazuli Viagens - Comprovante de pagamento | ${userData.name}`,
       text: `${userData.name} - Documento: ${userData.cpf}`,
       attachments: [
