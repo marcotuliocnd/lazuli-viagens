@@ -42,11 +42,11 @@ export default class RoleController {
         $or: [{ fidelity: { $ne: null } }, { fidelity: { $exists: true } }],
       });
 
-      console.log(`> Processing ${users.length} users!`)
-      
+      console.log(`> Processing ${users.length} users!`);
+
       let index = 0;
       for (const user of users) {
-        console.log(`> Processing ${index++}/${users.length}!`)
+        console.log(`> Processing ${++index}/${users.length}!`);
         const value = parseInt(user.value, 10);
 
         if (value < 300) {
@@ -66,7 +66,7 @@ export default class RoleController {
         await user.save();
       }
 
-      console.log(`> Finished`)
+      console.log('> Finished');
 
       if (!matchByFn) {
         const data = await Users.find();
@@ -74,7 +74,7 @@ export default class RoleController {
         return res.json({ success: true, data });
       }
     } catch (err) {
-      console.error(err.message)
+      console.error(err.message);
 
       if (!matchByFn) {
         return res.status(500).json({ success: false });

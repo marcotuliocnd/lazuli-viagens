@@ -19,7 +19,6 @@ function generateToken(payload = {}) {
 
 async function fixBirthday() {
   try {
-
     const users = await User
       .find()
       .lean();
@@ -29,12 +28,12 @@ async function fixBirthday() {
         _id: user._id,
       }, {
         birthday: moment(user.birthdate_at).add(3, 'hours').format('DD/MM'),
-      })
+      });
     }
   } catch (err) {
     console.error(err.message);
   }
-};
+}
 
 function generatePassword(size) {
   let password = '';
@@ -216,7 +215,7 @@ export default {
       const nextPage = await User
         .find()
         .limit(limit * 1)
-        .skip((page*2 - 1) * limit)
+        .skip((page * 2 - 1) * limit)
         .sort({ createdAt: -1 })
         .count();
 
@@ -261,7 +260,7 @@ export default {
           secure: true,
           auth: {
             user: 'naoresponder@lazuliviagens.com.br',
-            pass: 'teste123teste123#'
+            pass: 'teste123teste123#',
           },
         },
       );
@@ -274,7 +273,9 @@ export default {
       };
 
       await transport.sendMail(mailOptions);
-      user = new User({ ...req.body, role: role._id, password, birthday: moment(req.body.birthdate_at).format('DD/MM'), });
+      user = new User({
+        ...req.body, role: role._id, password, birthday: moment(req.body.birthdate_at).format('DD/MM'),
+      });
 
       await user.save();
 
@@ -291,7 +292,6 @@ export default {
 
   async fixBirthday(req, res) {
     try {
-
       const users = await User
         .find()
         .lean();
@@ -301,7 +301,7 @@ export default {
           _id: user._id,
         }, {
           birthday: moment(user.birthdate_at).add(3, 'hours').format('DD/MM'),
-        })
+        });
       }
 
       return res
@@ -323,7 +323,7 @@ export default {
       }
       const user = await User.updateOne(
         { _id: req.params.id },
-       query,
+        query,
         { new: true },
       );
 
@@ -363,5 +363,40 @@ export default {
         .status(500)
         .json({ success: false, message: 'Internal Server Error' });
     }
-  }
+  },
+
+  async comprovante(req, res) {
+    const { file, user } = req;
+
+    const transport = nodemailer.createTransport(
+      {
+        host: 'br614.hostgator.com.br',
+        port: 465,
+        secure: true,
+        auth: {
+          user: 'naoresponder@lazuliviagens.com.br',
+          pass: 'teste123teste123#',
+        },
+      },
+    );
+
+    const userData = await User.findById(user.id);
+
+    const mailOptions = {
+      from: 'Lazuli Viagens <naoresponder@lazuliviagens.com.br',
+      to: 'marcotuliocandeo@outlook.com',
+      subject: `Lazuli Viagens - Comprovante de pagamento | ${userData.name}`,
+      text: `${userData.name} - Documento: ${userData.cpf}`,
+      attachments: [
+        {
+          filename: `${userData.name}_${userData.cpf}_${moment().format('DD/MM/YYYY')}_comprovante_${file.originalname}`,
+          path: `${process.env.BASE_URL}/public/avatar/${file.filename}`,
+        },
+      ],
+    };
+
+    await transport.sendMail(mailOptions);
+
+    return res.status(200).json({ success: true });
+  },
 };

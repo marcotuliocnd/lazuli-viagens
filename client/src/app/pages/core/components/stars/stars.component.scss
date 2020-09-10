@@ -1,0 +1,8 @@
+.stars {
+  color: yellow;
+  font-size: 1.2rem;
+
+  @media all and (max-width: 1024px) {
+    font-size: 0.8rem;
+  }
+}

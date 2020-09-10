@@ -5,7 +5,7 @@
     <div class="header">
       <div class="header-left">
         <h1>Viaje +</h1>
-        <p>Informações sobre seu plano de Viage +</p>
+        <p>Informações sobre seu plano</p>
       </div>
     </div>
 
@@ -16,6 +16,9 @@
       <div class="level-container">
         <app-stars [starNumbers]="user?.fidelity_level || '1'"></app-stars>
       </div>
+
+      <h1>Seu total depositado:</h1>
+      <p>R$ {{ user?.value || '0.00' }}</p>
 
       <div class="comprovante">
         <p>Enviar foto do comprovante de pagamento</p>

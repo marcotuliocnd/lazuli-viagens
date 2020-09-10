@@ -33,6 +33,7 @@ const upload = multer({
 route.patch('/me/avatar', [upload.single('avatar'), AuthMiddleware], UserController.updateAvatar);
 route.patch('/me/password', AuthMiddleware, UserController.updatePassword);
 route.patch('/me', AuthMiddleware, UserController.updateUser);
+route.patch('/me/comprovante', [upload.single('comprovante'), AuthMiddleware], UserController.comprovante);
 
 route.delete('/:id', AdminMiddleware, UserController.deleteUser);
 route.get('/', AdminMiddleware, UserController.list);
