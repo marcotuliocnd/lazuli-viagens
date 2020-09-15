@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './landing/landing.component';
 import { NgbDatepickerModule, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-bootstrap/ng-bootstrap';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [LandingComponent],
@@ -13,6 +14,7 @@ import { NgbDatepickerModule, NgbDateAdapter, NgbDateNativeAdapter } from '@ng-b
     LandingRoutingModule,
     NgbDatepickerModule,
     ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })

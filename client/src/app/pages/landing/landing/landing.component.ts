@@ -27,7 +27,7 @@ export class LandingComponent implements OnInit {
       adults: '',
       kids: '',
       babys: '',
-      mode: '',
+      mode: '1',
       goDate: '',
       backDate: '',
       message: '',
@@ -53,6 +53,7 @@ export class LandingComponent implements OnInit {
   sendForm() {
     this.contact.send(this.contactForm.value).subscribe(
       (res) => {
+        this.contactForm.reset()
         this.toastr.success('E-mail enviado com sucesso');
       }, (err) => {
         this.toastr.error('Ocorreu um erro ao enviar o e-mail');
