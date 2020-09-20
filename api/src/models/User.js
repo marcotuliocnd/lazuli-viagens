@@ -73,10 +73,14 @@ const User = new Schema(
       type: String,
       required: false,
     },
+    currentValue: {
+      type: String,
+      required: false,
+    },
     birthday: {
       type: String,
       required: true,
-    }
+    },
   },
   {
     timestamps: true,

@@ -49,7 +49,7 @@ export default class RoleController {
         console.log(`> Processing ${++index}/${users.length}!`);
         const value = parseInt(user.value, 10);
 
-        if (value < 300) {
+        if (value >= 150 && value < 300) {
           user.fidelity_level = 1;
         } else if (value >= 300 && value < 600) {
           user.fidelity_level = 2;
