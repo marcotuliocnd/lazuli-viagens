@@ -7,6 +7,7 @@ export interface IUser {
   phone?: string;
   passport_number?: string;
   value?: string;
+  currentValue?: string;
   cpf: string;
   rg: string;
   birthdate_at: Date;
