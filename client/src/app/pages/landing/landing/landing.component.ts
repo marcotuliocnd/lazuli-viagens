@@ -37,7 +37,7 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {
     this.testimonialService.list().subscribe(
       (res) => {
-        this.testmonials = [];
+        this.testmonials = res.data;
       }
     )
   }

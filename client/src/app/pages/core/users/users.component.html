@@ -108,6 +108,26 @@
 
       <div class="row">
         <div class="form-group col-lg-12">
+          <label for="value">Valor atual:</label>
+          <div class="input-group">
+            <span class="input-group-addon">R$</span>
+            <input
+              formControlName="currentValue"
+              type="number"
+              class="form-control"
+              min="0"
+              step="0.01"
+              data-number-to-fixed="2"
+              data-number-stepfactor="100"
+              class="form-control currency"
+              id="c2"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
           <label for="passport_number">Número de Passaporte:</label>
           <div class="input-group">
             <input formControlName="passport_number" id="passport_number" class="form-control" placeholder="00000000000000"  />

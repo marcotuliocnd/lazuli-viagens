@@ -51,6 +51,7 @@ export class UsersComponent implements OnInit {
       passport_number: '',
       fidelity: '',
       value: '',
+      currentValue: '',
     });
   }
 
@@ -91,6 +92,7 @@ export class UsersComponent implements OnInit {
         passport_number: '',
         fidelity: null,
         value: '',
+        currentValue: '',
       });
       this.edit = false;
     } else if (mode === 'edit' && user) {
@@ -106,6 +108,7 @@ export class UsersComponent implements OnInit {
         passport_number: user.passport_number || '',
         fidelity: user?.fidelity?._id || null,
         value: user?.value || '',
+        currentValue: user?.currentValue || '',
       });
 
       this.edit = true;
