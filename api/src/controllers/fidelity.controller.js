@@ -60,7 +60,7 @@ export default class RoleController {
         } else if (value >= 2400) {
           user.fidelity_level = 5;
         } else {
-          user.fidelity_level = 1;
+          user.fidelity_level = 0;
         }
 
         await user.save();

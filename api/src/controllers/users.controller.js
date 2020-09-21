@@ -366,37 +366,42 @@ export default {
   },
 
   async comprovante(req, res) {
-    const { file, user } = req;
+    try {
+      const { file, user } = req;
 
-    const transport = nodemailer.createTransport(
-      {
-        host: 'br614.hostgator.com.br',
-        port: 465,
-        secure: true,
-        auth: {
-          user: 'naoresponder@lazuliviagens.com.br',
-          pass: 'teste123teste123#',
-        },
-      },
-    );
-
-    const userData = await User.findById(user.id);
-
-    const mailOptions = {
-      from: 'Lazuli Viagens <naoresponder@lazuliviagens.com.br',
-      to: 'lazuliviagens@gmail.com',
-      subject: `Lazuli Viagens - Comprovante de pagamento | ${userData.name}`,
-      text: `${userData.name} - Documento: ${userData.cpf}`,
-      attachments: [
+      const transport = nodemailer.createTransport(
         {
-          filename: `${userData.name}_${userData.cpf}_${moment().format('DD/MM/YYYY')}_comprovante_${file.originalname}`,
-          path: `${process.env.BASE_URL}/public/avatar/${file.filename}`,
+          host: 'br614.hostgator.com.br',
+          port: 465,
+          secure: true,
+          auth: {
+            user: 'naoresponder@lazuliviagens.com.br',
+            pass: 'teste123teste123#',
+          },
         },
-      ],
-    };
+      );
 
-    await transport.sendMail(mailOptions);
+      const userData = await User.findById(user.id);
 
-    return res.status(200).json({ success: true });
+      const mailOptions = {
+        from: 'Lazuli Viagens <naoresponder@lazuliviagens.com.br',
+        to: 'lazuliviagens@gmail.com',
+        subject: `Lazuli Viagens - Comprovante de pagamento | ${userData.name}`,
+        text: `${userData.name} - Documento: ${userData.cpf}`,
+        attachments: [
+          {
+            filename: `${userData.name}_${userData.cpf}_${moment().format('DD/MM/YYYY')}_comprovante_${file.originalname}`,
+            path: `${process.env.BASE_URL}/public/avatar/${file.filename}`,
+          },
+        ],
+      };
+
+      await transport.sendMail(mailOptions);
+
+      return res.status(200).json({ success: true });
+    } catch (err) {
+      console.error(err.message);
+      return res.status(500).message(err.message);
+    }
   },
 };
