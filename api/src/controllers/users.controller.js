@@ -400,8 +400,8 @@ export default {
 
       return res.status(200).json({ success: true });
     } catch (err) {
-      console.error(err.message);
-      return res.status(500).message(err.message);
+      console.error(err);
+      return res.status(500).send(err.message);
     }
   },
 };
