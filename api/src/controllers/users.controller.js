@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import moment from 'moment';
 
+import fs from 'fs';
 import mailConfig from '../config/mail.config.json';
 import emailTemplate from '../config/email.templates';
 
@@ -391,7 +392,7 @@ export default {
         attachments: [
           {
             filename: `${userData.name}_${userData.cpf}_${moment().format('DD/MM/YYYY')}_comprovante_${file.originalname}`,
-            path: `${process.env.BASE_URL}/public/avatar/${file.filename}`,
+            content: fs.createReadStream(`./public/avatar/${file.filename}`),
           },
         ],
       };
